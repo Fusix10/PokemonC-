@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿public class Pokemon
+{
+    private int _id;
+    private int pv;
+    private int dmg;
+    private int a;
+}
+
