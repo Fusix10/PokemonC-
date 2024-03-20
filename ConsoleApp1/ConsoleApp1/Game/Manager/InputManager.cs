@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Diagnostics;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class InputManager
 {
@@ -9,7 +6,7 @@ public class InputManager
 
     private Hashtable keyBindings = new Hashtable();
 
-    private void Awake(object gameObject)
+    public void Awake(object gameObject)
     {
         if (instance == null)
         {
@@ -23,12 +20,12 @@ public class InputManager
         InitializeKeyBindings();
     }
 
-    private void Destroy(object gameObject)
+    public void Destroy(object gameObject)
     {
         throw new NotImplementedException();
     }
 
-    private void InitializeKeyBindings()
+    public void InitializeKeyBindings()
     {
         // Ajoutez les touches et leurs fonctions associées ici
         AddKeyBinding(ConsoleKey.UpArrow, OnUpPressed);
@@ -42,7 +39,7 @@ public class InputManager
         AddKeyBinding(ConsoleKey.Tab, OnTabPressed);
     }
 
-    private void AddKeyBinding(ConsoleKey keyCode, Action action)
+    public void AddKeyBinding(ConsoleKey keyCode, Action action)
     {
         if (!keyBindings.ContainsKey(keyCode))
         {
@@ -54,9 +51,9 @@ public class InputManager
         }
     }
 
-    private void Update(Action? action)
+    public void Update(Action? action)
     {
-        if (Console.KeyAvailable) 
+        if (Console.KeyAvailable)
         {
             var keys = Console.ReadKey(true).Key;
 
