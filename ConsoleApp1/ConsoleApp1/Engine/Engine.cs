@@ -1,12 +1,15 @@
 ﻿public class Engine
 {
-    public void init()
+    Engine()
     {
 
     }
-    public void trux()
+    private void Update()
     {
+        while (true) 
+        {
 
+        }
     }
     public void destroy()
     { 
