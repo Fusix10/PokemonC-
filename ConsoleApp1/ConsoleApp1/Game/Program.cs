@@ -1,7 +1,13 @@
-﻿internal class Program
+﻿using System;
+
+class Program
 {
-    private static void Main(string[] args)
+    static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        //MenuAll mainMenu = new MenuAll();
+        //mainMenu.ShowMainMenu();
+
+        MenuFigth menuFigth = new MenuFigth();
+        menuFigth.ShowMenuFigth();
     }
 }
