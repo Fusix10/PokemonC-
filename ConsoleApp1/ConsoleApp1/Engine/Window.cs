@@ -63,6 +63,8 @@ public class Window
                 }
                 Console.Write(chars);
                 Console.Write("\n");
+
+                Console.SetCursorPosition(0,0);
             }
         }
     }
