@@ -4,11 +4,11 @@
 
 
 
-    //potionNormal : Available = rand (1 to 20) / Heal = 20 / hpPlayer = hpPokemon + Heal
+    //potionNormal : Available = rand (1 to 20) / heal = 20 / _pv = _pv + heal
 
 
 
-    //potionMax : Available = rand (1 to 10) / Heal = 50 / hpPlayer = hpPokemon + Heal
+    //potionMax : Available = rand (1 to 10) / heal = 50 / _pv = _pv + heal
 
 
 
