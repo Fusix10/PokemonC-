@@ -1,18 +1,23 @@
-﻿public class Engine
+﻿using ConsoleApp1;
+public class Engine
 {
-    Engine()
+    public Engine()
     {
 
     }
-    private void Update()
+    public void Update()
     {
-        while (true) 
+        Pokemon poke;
+        Window aled;
+        aled = new Window(5, 5);
+        aled.DrawWindow();
+        poke = new Pokemon(0);
+        aled = new Window(5, 5);
+        while (true)
         {
-
+            aled.DrawWindow();
+            poke.DrawPokemon(aled);
+            Console.ReadKey(false);
         }
-    }
-    public void destroy()
-    { 
-
     }
 }

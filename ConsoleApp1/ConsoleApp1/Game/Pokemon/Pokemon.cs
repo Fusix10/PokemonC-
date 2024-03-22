@@ -12,7 +12,7 @@ namespace ConsoleApp1
             public int Y { get => y; set => y = value; }
         }
 
-        List<Char> Icone;
+        String Icone;
         public int _id;
         int _pv;
         int _dmg;
@@ -22,10 +22,15 @@ namespace ConsoleApp1
 
         public Pokemon(int Where)
         {
+            Icone = "p";
+            p = new Pos();
             _id = Where;
             _pv = 0;
             _dmg = 0;
             p = new Pos();
+            mouvement = new List<List<MoveP>>();
+            p.X = 4;
+            p.Y = 4;
 
         }
         void IMove.MakeMove(int IsTheMove)
@@ -49,6 +54,12 @@ namespace ConsoleApp1
                     p.X = p.X + 1;
                 }
             }
+        }
+        public void DrawPokemon(Window window)
+        {
+
+            Console.SetCursorPosition((p.X+1)*window.Windowfigth1[p.X][p.Y].H -3,( p.Y + 1 )* window.Windowfigth1[p.X][p.Y].W -3);
+            Console.Write(Icone);
         }
     }
 }
