@@ -1,11 +1,15 @@
-﻿using System;
-using static System.Collections.Specialized.BitVector32;
+﻿using System.ComponentModel;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-      InputManager inputManager = new InputManager();
-        inputManager.ShowInputManager();
+        bool dino = true;
+        while (dino)
+        {
+            InputManager inputManager = new InputManager();
+            inputManager.Awake();
+            inputManager.Update();
+        }
     }
 }

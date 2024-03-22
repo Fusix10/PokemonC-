@@ -6,116 +6,104 @@ public class InputManager
 
     private Hashtable keyBindings = new Hashtable();
 
-    public void ShowInputManager() {
-
-        void Awake(object gameObject)
+    public void Awake()
+    {
+        if (instance == null)
         {
-            if (instance == null)
-            {
-                instance = this;
-            }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-
-            InitializeKeyBindings();
+            instance = this;
         }
 
-        void Destroy(object gameObject)
+        InitializeKeyBindings();
+    }
+    private void InitializeKeyBindings()
+    {
+        // Ajoutez les touches et leurs fonctions associées ici
+        AddKeyBinding(ConsoleKey.UpArrow, OnUpPressed);
+        AddKeyBinding(ConsoleKey.DownArrow, OnDownPressed);
+        AddKeyBinding(ConsoleKey.LeftArrow, OnLeftPressed);
+        AddKeyBinding(ConsoleKey.RightArrow, OnRightPressed);
+        AddKeyBinding(ConsoleKey.A, OnAPressed);
+        AddKeyBinding(ConsoleKey.Z, OnZPressed);
+        AddKeyBinding(ConsoleKey.E, OnEPressed);
+        AddKeyBinding(ConsoleKey.R, OnRPressed);
+        AddKeyBinding(ConsoleKey.Tab, OnTabPressed);
+        AddKeyBinding(ConsoleKey.Escape, OnEscPressed);
+    }
+    private void AddKeyBinding(ConsoleKey keyCode, Action action)
+    {
+        if (!keyBindings.ContainsKey(keyCode))
         {
-            throw new NotImplementedException();
+            keyBindings.Add(keyCode, action);
         }
-
-        void InitializeKeyBindings()
+        else
         {
-            // Ajoutez les touches et leurs fonctions associées ici
-            AddKeyBinding(ConsoleKey.UpArrow, OnUpPressed);
-            AddKeyBinding(ConsoleKey.DownArrow, OnDownPressed);
-            AddKeyBinding(ConsoleKey.LeftArrow, OnLeftPressed);
-            AddKeyBinding(ConsoleKey.RightArrow, OnRightPressed);
-            AddKeyBinding(ConsoleKey.A, OnAPressed);
-            AddKeyBinding(ConsoleKey.Z, OnZPressed);
-            AddKeyBinding(ConsoleKey.E, OnEPressed);
-            AddKeyBinding(ConsoleKey.R, OnRPressed);
-            AddKeyBinding(ConsoleKey.Tab, OnTabPressed);
+            keyBindings[keyCode] = action;
         }
-
-        void AddKeyBinding(ConsoleKey keyCode, Action action)
+    }
+    public void Update()
+    {
+        if (Console.KeyAvailable)
         {
-            if (!keyBindings.ContainsKey(keyCode))
-            {
-                keyBindings.Add(keyCode, action);
-            }
-            else
-            {
-                keyBindings[keyCode] = action;
-            }
-        }
+            var keys = Console.ReadKey(true).Key;
 
-        void Update(Action? action)
-        {
-            if (Console.KeyAvailable)
+            foreach (ConsoleKey keyCode in keyBindings.Keys)
             {
-                var keys = Console.ReadKey(true).Key;
-
-                foreach (ConsoleKey keyCode in keyBindings.Keys)
+                if (keys == keyCode)
                 {
-                    if (keys == keyCode)
-                    {
-                        Action? action1 = keyBindings[keyCode] as Action;
-                        action?.Invoke();
-                    }
+                    Action? action1 = keyBindings[keyCode] as Action;
+                    action1?.Invoke();
                 }
             }
-
         }
+    }
+    // Fonctions appelées lorsque les touches sont pressées
+    private void OnUpPressed()
+    {
+        Console.WriteLine("Up Arrow Pressed");
+    }
 
-        // Fonctions appelées lorsque les touches sont pressées
-        void OnUpPressed()
-        {
-            Console.WriteLine("Up Arrow Pressed");
-        }
+    private void OnDownPressed()
+    {
+        Console.WriteLine("Down Arrow Pressed");
+    }
 
-        void OnDownPressed()
-        {
-            Console.WriteLine("Down Arrow Pressed");
-        }
+    private void OnLeftPressed()
+    {
+        Console.WriteLine("Left Arrow Pressed");
+    }
 
-        void OnLeftPressed()
-        {
-            Console.WriteLine("Left Arrow Pressed");
-        }
+    private void OnRightPressed()
+    {
+        Console.WriteLine("Right Arrow Pressed");
+    }
 
-        void OnRightPressed()
-        {
-            Console.WriteLine("Right Arrow Pressed");
-        }
+    private void OnAPressed()
+    {
+        Console.WriteLine("A Pressed");
+    }
 
-        void OnAPressed()
-        {
-            Console.WriteLine("A Pressed");
-        }
+    private void OnZPressed()
+    {
+        Console.WriteLine("Z Pressed");
+    }
 
-        void OnZPressed()
-        {
-            Console.WriteLine("Z Pressed");
-        }
+    private void OnEPressed()
+    {
+        Console.WriteLine("E Pressed");
+    }
 
-        void OnEPressed()
-        {
-            Console.WriteLine("E Pressed");
-        }
+    private void OnRPressed()
+    {
+        Console.WriteLine("R Pressed");
+    }
 
-        void OnRPressed()
-        {
-            Console.WriteLine("R Pressed");
-        }
+    private void OnTabPressed()
+    {
+        Console.WriteLine("Tab Pressed");
+    }
 
-        void OnTabPressed()
-        {
-            Console.WriteLine("Tab Pressed");
-        }
-
+    public void OnEscPressed()
+    {
+        Console.WriteLine("Esc Pressed");
     }
 }
