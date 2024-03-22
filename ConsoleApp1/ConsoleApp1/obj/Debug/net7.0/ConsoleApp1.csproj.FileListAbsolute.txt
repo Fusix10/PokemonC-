@@ -1,0 +1,5 @@
+C:\Users\natso\source\repos\Fusix10\PokemonC-\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\natso\source\repos\Fusix10\PokemonC-\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\natso\source\repos\Fusix10\PokemonC-\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\natso\source\repos\Fusix10\PokemonC-\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\natso\source\repos\Fusix10\PokemonC-\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.sourcelink.json
