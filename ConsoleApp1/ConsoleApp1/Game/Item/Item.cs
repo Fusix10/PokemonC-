@@ -12,15 +12,15 @@
 
 
 
-    //upCapacityAtt : Available = rand (1 to 5) / bosstAtt = 20 / attackPokemon = attackPokemon + bosstAtt 
+    //upCapacityAtt : Available = rand (1 to 5) / boostAtt = 20 / attackPokemon = attackPokemon + boostAtt 
 
 
 
-    //upCapacityDef : Available = rand (1 to 5) / bosstDef = 20 / defencePokemon = defencePokemon + bosstDef
+    //upCapacityDef : Available = rand (1 to 5) / boostDef = 20 / defencePokemon = defencePokemon + boostDef
 
 
 
-    //upCapacitySpeed : Available = rand (1 to 5) / bosstSpeed = 20 / speedPokemon = speedPokemon + bosstSpeed
+    //upCapacitySpeed : Available = rand (1 to 5) / boostSpeed = 20 / speedPokemon = speedPokemon + boostSpeed
 
 
 
@@ -36,7 +36,7 @@
 
 
 
-    //hyperBall : Available = rand (5 to 15) / bonusCatch = 20% / catchPokemon = catchPokemon + bonusCatch
+    //hyperBall : Available = rand (5 to 15) / bonusCatch = 30% / catchPokemon = catchPokemon + bonusCatch
 
 
 
