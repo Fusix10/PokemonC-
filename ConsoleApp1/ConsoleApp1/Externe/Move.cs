@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-internal interface IMove
+public interface IMove
 {
     public enum MoveP
     {
@@ -14,5 +14,6 @@ internal interface IMove
         Right
     }
     void MakeMove(int IsTheMove);
+
 }
 

@@ -19,15 +19,26 @@ public class Window
         public int H { get => h; set => h = value; }
         public Color Color { get => color; set => color = value; }
     }
+    public class Cursor
+    {
+        int x, y;
+
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
+    }
     Case UneCase;
     List<Case> Cases;
     List<List<Case>> Windowfigth;
+    Cursor Elcursor;
     public Case UneCase2 { get => UneCase; set => UneCase = value; }
     public List<Case> Cases1 { get => Cases; set => Cases = value; }
     public List<List<Case>> Windowfigth1 { get => Windowfigth; set => Windowfigth = value; }
+    public Cursor Elcursor1 { get => Elcursor; set => Elcursor = value; }
 
     public Window(int x, int y)
     {
+        Elcursor = new Cursor();
+        Elcursor.X = 1; Elcursor.Y = 0;
         Windowfigth = new List<List<Case>>();
 
         for (int i = 0; i < x; i++)
@@ -83,19 +94,51 @@ public class Window
                 {
                     for (int k = 0; k < 5; k++)
                     {
-                        Console.SetCursorPosition(j * 5, i * 5 + k);
-                        Console.Write("/////");
+                        if (i == Elcursor.Y && j == Elcursor.X)
+                        {
+                            if (k == 0 || k == 4)
+                            {
+                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.Write("[---]");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.Write("[///]");
+                            }
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(j * 5, i * 5 + k);
+                            Console.Write("/////");
+                        }
+                        
                     }
-                    //chars = "/////\n/////\n/////\n/////\n/////\n";
                 }
                 else
                 {
                     for (int k = 0; k < 5; k++)
                     {
-                        Console.SetCursorPosition(j * 5, i * 5 + k);
-                        Console.Write("OOOOO");
+                        if (i == Elcursor.Y && j == Elcursor.X)
+                        {
+                            if (k == 0 || k == 4)
+                            {
+                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.Write("[---]");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.Write("[OOO]");
+                            }
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(j * 5, i * 5 + k);
+                            Console.Write("OOOOO");
+                        }
+
                     }
-                    //chars = "OOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\n";
                 }
 
             }
