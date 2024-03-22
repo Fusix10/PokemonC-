@@ -4,12 +4,16 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        bool dino = true;
-        while (dino)
+        bool NoEsc = true;
+        while (NoEsc)
         {
             InputManager inputManager = new InputManager();
             inputManager.Awake();
             inputManager.Update();
+            if(inputManager.Ivalue == 10)
+            {
+                NoEsc = false;
+            }
         }
     }
 }

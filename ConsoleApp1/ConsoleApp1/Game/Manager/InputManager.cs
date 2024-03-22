@@ -5,6 +5,9 @@ public class InputManager
     private static InputManager? instance;
 
     private Hashtable keyBindings = new Hashtable();
+    int i = 0;
+
+    public int Ivalue { get => i;}
 
     public void Awake()
     {
@@ -60,50 +63,61 @@ public class InputManager
     private void OnUpPressed()
     {
         Console.WriteLine("Up Arrow Pressed");
+        i = 1;
     }
 
     private void OnDownPressed()
     {
         Console.WriteLine("Down Arrow Pressed");
+        i = 2;
     }
 
     private void OnLeftPressed()
     {
         Console.WriteLine("Left Arrow Pressed");
+        i = 3;
     }
 
     private void OnRightPressed()
     {
         Console.WriteLine("Right Arrow Pressed");
+        i = 4;
     }
 
     private void OnAPressed()
     {
         Console.WriteLine("A Pressed");
+        i = 5;
     }
 
     private void OnZPressed()
     {
         Console.WriteLine("Z Pressed");
+        i = 6;
     }
 
     private void OnEPressed()
     {
         Console.WriteLine("E Pressed");
+        i = 7;
     }
 
     private void OnRPressed()
     {
         Console.WriteLine("R Pressed");
+        i = 8;
     }
 
     private void OnTabPressed()
     {
         Console.WriteLine("Tab Pressed");
+        i = 9;
     }
 
-    public void OnEscPressed()
+    private void OnEscPressed()
     {
         Console.WriteLine("Esc Pressed");
+        i = 10;
+
     }
 }
