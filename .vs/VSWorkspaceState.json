@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\ConsoleApp1",
-    "\\ConsoleApp1\\ConsoleApp1",
-    "\\ConsoleApp1\\ConsoleApp1\\Game",
-    "\\ConsoleApp1\\ConsoleApp1\\Game\\StateMachine"
+    ""
   ],
-  "SelectedNode": "\\ConsoleApp1\\ConsoleApp1\\Game\\StateMachine\\StateMachine.cs",
+  "SelectedNode": "\\ConsoleApp1.sln",
   "PreviewInSolutionExplorer": false
 }
