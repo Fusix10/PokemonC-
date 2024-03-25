@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kjhKVQWhWNgr+6I7hnYTaZBNyI8Vs1t1wdkXQIeM3Hiq38hLZyZ2tR0/glD4ksVao1st0vTQ/dgud4yONrQO2A==",
+  "dgSpecHash": "K5VC2uWcLSfx1cF3Jxvpj5iTNgWDhZ/fdeHbJnM/iihpSnC3J9jiWg030AIpnwYlWMKVuZ6LdhnklJMDgUvjJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\natso\\Source\\Repos\\Fusix10\\PokemonC-\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\natso\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
-    "C:\\Users\\natso\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
-    "C:\\Users\\natso\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
-    "C:\\Users\\natso\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.17\\microsoft.netcore.app.host.win-x64.7.0.17.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\natso\\source\\repos\\Fusix10\\PokemonC-\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
