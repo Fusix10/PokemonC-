@@ -81,35 +81,36 @@ public class Window
 
             }
             Windowfigth.Add(Cases);
+            int test = Windowfigth.Count();
         }
     }
     public void DrawWindow()
     {
         for (int i = 0; i < Windowfigth.Count; i++)
         {
-            for (int j = 0; j < Windowfigth.Count; j++)
+            for (int j = 0; j < Windowfigth[i].Count; j++)
             {
-                Console.SetCursorPosition(j * 5, i * 5);
+                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H);
                 if (Windowfigth[i][j].Color == Color.WHITE)
                 {
-                    for (int k = 0; k < 5; k++)
+                    for (int k = 0; k < Windowfigth[i][j].W; k++)
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == 4)
+                            if (k == 0 || k == Windowfigth.Count())
                             {
-                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.Write("[---]");
                             }
                             else
                             {
-                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.Write("[///]");
                             }
                         }
                         else
                         {
-                            Console.SetCursorPosition(j * 5, i * 5 + k);
+                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                             Console.Write("/////");
                         }
                         
@@ -117,24 +118,24 @@ public class Window
                 }
                 else
                 {
-                    for (int k = 0; k < 5; k++)
+                    for (int k = 0; k < Windowfigth[i][j].W; k++)
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == 4)
+                            if (k == 0 || k == Windowfigth.Count())
                             {
-                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.Write("[---]");
                             }
                             else
                             {
-                                Console.SetCursorPosition(j * 5, i * 5 + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.Write("[OOO]");
                             }
                         }
                         else
                         {
-                            Console.SetCursorPosition(j * 5, i * 5 + k);
+                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                             Console.Write("OOOOO");
                         }
 

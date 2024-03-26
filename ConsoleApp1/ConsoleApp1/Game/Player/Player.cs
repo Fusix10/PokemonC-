@@ -20,6 +20,7 @@ public class Player: IMove
 
     public string Name1 { get => Name; set => Name = value; }
     public string Age1 { get => Age; set => Age = value; }
+    internal Inventory Inventory { get => inventory; set => inventory = value; }
 
     void IMove.MakeMove(int IsTheMove)
     {

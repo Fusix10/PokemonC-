@@ -15,11 +15,10 @@ public class Engine
         player = new Player();
         CreationPlayer();
         Console.Clear();
-        aled = new Window(5, 5);
+        aled = new Window(10, 10);
         aled.DrawWindow();
         ratio = new Ratio(0);
         player.Inventory.AddPokemon(ratio);
-        aled = new Window(5, 5);
         inputManager.Awake();
         aled.DrawWindow();
         ratio.DrawPokemon(aled);
@@ -60,7 +59,7 @@ public class Engine
         }
         else if (inputManager.Ivalue == 2)
         {
-            if (aled.Elcursor1.Y < 4)
+            if (aled.Elcursor1.Y < aled.Windowfigth1.Count()-1)
             {
                 ++aled.Elcursor1.Y;
                 aled.DrawWindow();
@@ -80,7 +79,7 @@ public class Engine
         }
         else if (inputManager.Ivalue == 4)
         {
-            if (aled.Elcursor1.X < 4)
+            if (aled.Elcursor1.X < aled.Windowfigth1[0].Count()-1)
             {
                 ++aled.Elcursor1.X;
                 aled.DrawWindow();
