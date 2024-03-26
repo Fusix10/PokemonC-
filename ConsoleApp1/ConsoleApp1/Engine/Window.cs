@@ -48,7 +48,6 @@ public class Window
             Cases = new List<Case>();
             for (int j = 0; j < y; j++)
             {
-                UneCase.Id = i*i + j;
                 UneCase = new Case();
                 UneCase.W = 5;
                 UneCase.H = 5;
