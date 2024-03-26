@@ -12,7 +12,7 @@ namespace ConsoleApp1
             public int Y { get => y; set => y = value; }
         }
         List<List<int>> ViewMoveResult;
-        String Icone;
+        List<String> Icone;
         public int _id;
         int _pv;
         int _dmg;
@@ -28,7 +28,11 @@ namespace ConsoleApp1
         public Pokemon(int Where)
         {
             ViewMoveResult = new List<List<int>>();
-            Icone = "p";
+            String IconeL1 = "(| |)";
+            String IconeL2 = "|o|o|";
+            String IconeL3 = "*-b-*";
+            String IconeL4 = "|___|";
+
             p = new Pos();
             _id = Where;
             _pv = 0;
@@ -100,7 +104,7 @@ namespace ConsoleApp1
         }
         public void DrawPokemon(Window window)
         {
-            Console.SetCursorPosition((p.X+1)*window.Windowfigth1[p.X][p.Y].H -3,( p.Y + 1 )* window.Windowfigth1[p.X][p.Y].W -3);
+            Console.SetCursorPosition((p.X+1)*window.Windowfigth1[p.X][p.Y].H -5,( p.Y + 1 )* window.Windowfigth1[p.X][p.Y].W -5);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(Icone);
             Console.ForegroundColor = ConsoleColor.White;

@@ -7,6 +7,7 @@ public class Window
 
     public class Case
     {
+        int id = 0;
         Pokemon pok;
         int x;
         int y;
@@ -18,6 +19,7 @@ public class Window
         public int W { get => w; set => w = value; }
         public int H { get => h; set => h = value; }
         public Color Color { get => color; set => color = value; }
+        public int Id { get => id; set => id = value; }
     }
     public class Cursor
     {
@@ -46,6 +48,7 @@ public class Window
             Cases = new List<Case>();
             for (int j = 0; j < y; j++)
             {
+                UneCase.Id = i*i + j;
                 UneCase = new Case();
                 UneCase.W = 5;
                 UneCase.H = 5;
