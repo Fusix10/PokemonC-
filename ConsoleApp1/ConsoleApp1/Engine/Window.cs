@@ -97,21 +97,22 @@ public class Window
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == Windowfigth.Count())
+                            if (k == 0 || k == Windowfigth[0][0].H-1)
                             {
                                 Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
                                 Console.Write("[---]");
-                            }
-                            else
-                            {
-                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
-                                Console.Write("[///]");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.ForegroundColor = ConsoleColor.White;
                             }
                         }
                         else
                         {
                             Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
-                            Console.Write("/////");
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write("     ");
+                            Console.BackgroundColor = ConsoleColor.Black;
                         }
                         
                     }
@@ -122,21 +123,19 @@ public class Window
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == Windowfigth.Count())
+                            if (k == 0 || k == Windowfigth[0][0].H - 1)
                             {
                                 Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.Write("[---]");
-                            }
-                            else
-                            {
-                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
-                                Console.Write("[OOO]");
                             }
                         }
                         else
                         {
                             Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
-                            Console.Write("OOOOO");
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write("     ");
                         }
 
                     }

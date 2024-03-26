@@ -86,10 +86,12 @@ namespace ConsoleApp1
                         u++;
                     }
                 }
-                if (f <= 4 && f >=0 && u <= 4 && u >= 0)
+                if (f <= window.Windowfigth1.Count()-1 && f >=0 && u <= window.Windowfigth1[0].Count()-1 && u >= 0)
                 {
-                    Console.SetCursorPosition((u + 1) * window.Windowfigth1[u][f].H - 3, (f + 1) * window.Windowfigth1[u][f].W - 3);
-                    Console.Write('M');
+                    Console.SetCursorPosition((u + 1) * window.Windowfigth1[u][f].H - 4, (f + 1) * window.Windowfigth1[u][f].W - 3);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("MMM");
+                    Console.ForegroundColor = ConsoleColor.White;
                     List<int> l = new List<int>();
                     l.Add(u);l.Add(f);
                     ViewMoveResult.Add(l);
@@ -99,7 +101,9 @@ namespace ConsoleApp1
         public void DrawPokemon(Window window)
         {
             Console.SetCursorPosition((p.X+1)*window.Windowfigth1[p.X][p.Y].H -3,( p.Y + 1 )* window.Windowfigth1[p.X][p.Y].W -3);
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(Icone);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
