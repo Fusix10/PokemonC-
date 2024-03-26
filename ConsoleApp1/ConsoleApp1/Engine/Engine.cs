@@ -13,6 +13,7 @@ public class Engine
     public Engine()
     {
         Console.SetWindowSize(Console.WindowWidth*2, Console.WindowHeight*2);
+        Console.LargestWindowHeight = 1920;
         player = new Player();
         CreationPlayer();
         Console.Clear();
