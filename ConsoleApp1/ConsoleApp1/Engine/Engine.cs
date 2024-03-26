@@ -12,7 +12,6 @@ public class Engine
     bool ingame = true;
     public Engine()
     {
-        Console.SetWindowSize(Console.WindowWidth*2, Console.WindowHeight*2);
         player = new Player();
         CreationPlayer();
         Console.Clear();
