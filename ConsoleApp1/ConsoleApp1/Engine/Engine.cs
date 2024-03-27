@@ -12,10 +12,11 @@ public class Engine
     bool ingame = true;
     public Engine()
     {
+        Console.SetWindowSize(Console.LargestWindowWidth,Console.LargestWindowHeight);
         player = new Player();
         CreationPlayer();
         Console.Clear();
-        aled = new Window(10, 10);
+        aled = new Window(9, 10);
         aled.DrawWindow();
         ratio = new Ratio(0);
         player.Inventory.AddPokemon(ratio);
@@ -114,6 +115,8 @@ public class Engine
 
                     aled.DrawWindow();
                     ratio.DrawPokemon(aled);
+                    PreMove = false;
+                    ratio.ViewMoveResult1.Clear();
                 }
 
 
@@ -126,7 +129,7 @@ public class Engine
         Console.WriteLine("Bonjours ! voici dans une version bêta de PokeChess\nveuilleur choisir un nom et une age pour votre perso:\n");
         String ?Recup = Console.ReadLine();
         Console.WriteLine("\n");
-        while (Recup == null)
+        while (Recup == null || Recup == "" || Recup == " ")
         {
             Console.WriteLine("je ne sais pas qu'esque ta écrit mais RATIO + CHEH\n");
             Console.WriteLine("bon allez ton name ?:\n");
@@ -138,7 +141,7 @@ public class Engine
         Recup = null;
         Recup = Console.ReadLine();
         Console.WriteLine("\n");
-        while (Recup == null) 
+        while (Recup == null || Recup == "" || Recup == " ")
         {
             Console.WriteLine("je ne sais pas qu'esque ta écrit mais RATIO + CHEH\n");
             Console.WriteLine("bon allez ton Age ?:\n");

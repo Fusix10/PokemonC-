@@ -49,7 +49,7 @@ public class Window
             for (int j = 0; j < y; j++)
             {
                 UneCase = new Case();
-                UneCase.W = 5;
+                UneCase.W = 7;
                 UneCase.H = 5;
                 UneCase.Color = Color.WHITE;
 
@@ -104,7 +104,7 @@ public class Window
                                 Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.BackgroundColor = ConsoleColor.White;
                                 Console.ForegroundColor = ConsoleColor.Black;
-                                Console.Write("[---]");
+                                Console.Write("[-----]");
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 Console.ForegroundColor = ConsoleColor.White;
                             }
@@ -113,7 +113,7 @@ public class Window
                         {
                             Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                             Console.BackgroundColor = ConsoleColor.White;
-                            Console.Write("     ");
+                            Console.Write("       ");
                             Console.BackgroundColor = ConsoleColor.Black;
                         }
                         
@@ -130,14 +130,15 @@ public class Window
                                 Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 Console.ForegroundColor = ConsoleColor.White;
-                                Console.Write("[---]");
+                                Console.Write("[-----]");
                             }
                         }
                         else
                         {
                             Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
                             Console.BackgroundColor = ConsoleColor.Black;
-                            Console.Write("     ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("       ");
                         }
 
                     }

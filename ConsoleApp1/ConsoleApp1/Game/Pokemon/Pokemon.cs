@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    public class Pokemon : IMove
+    public abstract class Pokemon : IMove
     {
         public class Pos
         {
@@ -12,14 +12,15 @@ namespace ConsoleApp1
             public int Y { get => y; set => y = value; }
         }
         List<List<int>> ViewMoveResult;
-        String Icone;
+        protected String Icone;
         public int _id;
         int _pv;
         int _dmg;
         Pos p;
         List<MoveP> ELMouvement;
         List<List<MoveP>> mouvement;
-
+        protected List<MoveP> ElRangeAttack;
+        protected List<List<MoveP>> RangeAttack;
         internal List<MoveP> ELMouvement1 { get => ELMouvement; set => ELMouvement = value; }
         public List<List<MoveP>> Mouvement { get => mouvement; set => mouvement = value; }
         public Pos P { get => p; set => p = value; }
@@ -28,11 +29,6 @@ namespace ConsoleApp1
         public Pokemon(int Where)
         {
             ViewMoveResult = new List<List<int>>();
-            String IconeL1 = "(| |)";
-            String IconeL2 = "|o|o|";
-            String IconeL3 = "*-b-*";
-            String IconeL4 = "|___|";
-            Icone = "(| |)=/=|o|o|=/=*-b-*=/=|___|";
             p = new Pos();
             _id = Where;
             _pv = 0;
@@ -67,6 +63,7 @@ namespace ConsoleApp1
         }
         public void ViewMove(Window window)
         {
+
             for (int i = 0; i < mouvement.Count; i++)
             {
                 int u = p.X;
@@ -92,9 +89,8 @@ namespace ConsoleApp1
                 }
                 if (f <= window.Windowfigth1.Count()-1 && f >=0 && u <= window.Windowfigth1[0].Count()-1 && u >= 0)
                 {
-                    Console.SetCursorPosition((u + 1) * window.Windowfigth1[u][f].H - 4, (f + 1) * window.Windowfigth1[u][f].W - 3);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("MMM");
+                    Draw.DrawInCase(window.Windowfigth1[u][f], "MMM",window.Windowfigth1[u][f].W/2-1, window.Windowfigth1[u][f].H/2);
                     Console.ForegroundColor = ConsoleColor.White;
                     List<int> l = new List<int>();
                     l.Add(u);l.Add(f);
@@ -109,5 +105,6 @@ namespace ConsoleApp1
             Draw.DrawInCase(window.Windowfigth1[p.X][p.Y], Icone);
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public abstract void Attacks();
     }
 }
