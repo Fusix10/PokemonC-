@@ -11,32 +11,39 @@ namespace ConsoleApp1
             public int X { get => x; set => x = value; }
             public int Y { get => y; set => y = value; }
         }
-        List<List<int>> ViewMoveResult;
+        protected List<List<int>> ViewMoveResult;
+        private List<List<int>> viewAttackResult;
         protected String Icone;
-        public int _id;
-        int _pv;
-        int _dmg;
-        Pos p;
-        List<MoveP> ELMouvement;
-        List<List<MoveP>> mouvement;
+        private int id;
+        protected int _pv;
+        protected int _dmg;
+        protected Pos p;
+        protected List<MoveP> ELMouvement;
+        protected List<List<MoveP>> mouvement;
         protected List<MoveP> ElRangeAttack;
-        protected List<List<MoveP>> RangeAttack;
-        internal List<MoveP> ELMouvement1 { get => ELMouvement; set => ELMouvement = value; }
+        private List<List<MoveP>> rangeAttack;
+        protected List<MoveP> ELMouvement1 { get => ELMouvement; set => ELMouvement = value; }
         public List<List<MoveP>> Mouvement { get => mouvement; set => mouvement = value; }
         public Pos P { get => p; set => p = value; }
         public List<List<int>> ViewMoveResult1 { get => ViewMoveResult; set => ViewMoveResult = value; }
+        public List<List<int>> ViewAttackResult { get => viewAttackResult; set => viewAttackResult = value; }
+        public List<List<MoveP>> RangeAttack { get => rangeAttack;}
+        public int Id { get => id;}
+        public int Dmg { get => _dmg; }
 
-        public Pokemon(int Where)
+        public Pokemon(int Where, int x, int y)
         {
             ViewMoveResult = new List<List<int>>();
+            ViewAttackResult = new List<List<int>>();
             p = new Pos();
-            _id = Where;
+            id = Where;
             _pv = 0;
             _dmg = 0;
             p = new Pos();
             mouvement = new List<List<MoveP>>();
-            p.X = 2;
-            p.Y = 2;
+            rangeAttack = new List<List<MoveP>>();
+            p.X = x;
+            p.Y = y;
 
         }
         void IMove.MakeMove(int IsTheMove)
@@ -61,28 +68,28 @@ namespace ConsoleApp1
                 }
             }
         }
-        public void ViewMove(Window window)
+        public void ViewMove(Window window, List<List<MoveP>> PreViewThis, int Who)
         {
 
-            for (int i = 0; i < mouvement.Count; i++)
+            for (int i = 0; i < PreViewThis.Count; i++)
             {
                 int u = p.X;
                 int f = p.Y;
-                for (int j = 0; j < mouvement[i].Count; j++)
+                for (int j = 0; j < PreViewThis[i].Count; j++)
                 {
-                    if (mouvement[i][j] == MoveP.Up)
+                    if (PreViewThis[i][j] == MoveP.Up)
                     {
                         f++;
                     }
-                    else if (mouvement[i][j] == MoveP.Down)
+                    else if (PreViewThis[i][j] == MoveP.Down)
                     {
                         --f;
                     }
-                    else if (mouvement[i][j] == MoveP.Left)
+                    else if (PreViewThis[i][j] == MoveP.Left)
                     {
                         --u;
                     }
-                    else if (mouvement[i][j] == MoveP.Right)
+                    else if (PreViewThis[i][j] == MoveP.Right)
                     {
                         u++;
                     }
@@ -90,11 +97,26 @@ namespace ConsoleApp1
                 if (f <= window.Windowfigth1.Count()-1 && f >=0 && u <= window.Windowfigth1[0].Count()-1 && u >= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Draw.DrawInCase(window.Windowfigth1[u][f], "MMM",window.Windowfigth1[u][f].W/2-1, window.Windowfigth1[u][f].H/2);
+                    if(Who == 0) 
+                    {
+                        Draw.DrawInCase(window.Windowfigth1[u][f], "MMM", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                    }
+                    else
+                    {
+                        Draw.DrawInCase(window.Windowfigth1[u][f], "XXX", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                    }
+                    
                     Console.ForegroundColor = ConsoleColor.White;
                     List<int> l = new List<int>();
                     l.Add(u);l.Add(f);
-                    ViewMoveResult.Add(l);
+                    if (Who == 0)
+                    {
+                        ViewMoveResult.Add(l);
+                    }
+                    else
+                    {
+                        ViewAttackResult.Add(l);
+                    }
                 }
             }
         }
@@ -106,5 +128,10 @@ namespace ConsoleApp1
             Console.ForegroundColor = ConsoleColor.White;
         }
         public abstract void Attacks();
+
+        public void TakeDommage(int Dommage)
+        {
+            _pv = _pv - Dommage;
+        }
     }
 }

@@ -19,7 +19,7 @@ internal class Inventory
         
         for (int j = 0; j < Pokedex.Count(); j++)
         {
-            if (Pokedex[j][0]._id == Poke._id)
+            if (Pokedex[j][0].Id == Poke.Id)
             {
                 Pokedex[j].Add(Poke);
             }
@@ -37,7 +37,7 @@ internal class Inventory
         {
             for(int j = 0; j < Pokedex.Count(); j++)
             {
-                if(Pokedex[j][0]._id == Poke[i]._id) 
+                if(Pokedex[j][0].Id == Poke[i].Id) 
                 {
                     Pokedex[j].Add(Poke[i]);
                 }

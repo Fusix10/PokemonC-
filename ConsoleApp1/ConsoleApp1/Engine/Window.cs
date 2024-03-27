@@ -20,6 +20,7 @@ public class Window
         public int H { get => h; set => h = value; }
         public Color Color { get => color; set => color = value; }
         public int Id { get => id; set => id = value; }
+        public Pokemon Pok { get => pok; set => pok = value; }
     }
     public class Cursor
     {
@@ -52,6 +53,7 @@ public class Window
                 UneCase.W = 7;
                 UneCase.H = 5;
                 UneCase.Color = Color.WHITE;
+                UneCase.Pok = null;
 
                 UneCase.X = i;
                 UneCase.Y = j;
