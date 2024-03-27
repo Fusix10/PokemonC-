@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    public class Pokemon : IMove
+    public class Pokemon : IMove 
     {
         public class Pos
         {

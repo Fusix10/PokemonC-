@@ -1,6 +1,6 @@
 ﻿using static IMove;
 
-public class Player: IMove
+public class Player: IMove 
 {
     string Name;
     string Age;

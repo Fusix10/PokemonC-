@@ -13,7 +13,7 @@ class EntityManager
     public void AddEntity(Entity entity)
     {
         entities.Add(entity);
-        entity.SetEntityManager(this); // Permet à l'entité de connaître son EntityManager
+        //entity.SetEntityManager(this); // Permet à l'entité de connaître son EntityManager
     }
 
     public void RemoveEntity(Entity entity)
@@ -32,7 +32,7 @@ class EntityManager
 
 class Entity
 {
-    protected EntityManager entityManager;
+    protected EntityManager? entityManager;
 
     public void SetEntityManager(EntityManager manager)
     {
@@ -44,3 +44,4 @@ class Entity
         Console.WriteLine("Entity updating...");
     }
 }
+
