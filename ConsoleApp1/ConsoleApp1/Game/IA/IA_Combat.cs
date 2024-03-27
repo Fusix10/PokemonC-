@@ -1,11 +1,8 @@
-﻿class IA_Combat : Entity
+﻿class IA_Combat 
 {
-    public IA_Combat(int id) : base(id)
+    public IA_Combat(int id) 
     {
     }
 
-    public override void Update()
-    {
-        Console.WriteLine($"IA_Combat {Id} is updating...");
-    }
+
 }

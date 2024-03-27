@@ -13,6 +13,7 @@ class EntityManager
     public void AddEntity(Entity entity)
     {
         entities.Add(entity);
+        entity.SetEntityManager(this); // Permet à l'entité de connaître son EntityManager
     }
 
     public void RemoveEntity(Entity entity)
@@ -20,7 +21,7 @@ class EntityManager
         entities.Remove(entity);
     }
 
-    public void Update()
+    public void UpdateEntities()
     {
         foreach (Entity entity in entities)
         {
@@ -29,3 +30,17 @@ class EntityManager
     }
 }
 
+class Entity
+{
+    protected EntityManager entityManager;
+
+    public void SetEntityManager(EntityManager manager)
+    {
+        entityManager = manager;
+    }
+
+    public virtual void Update()
+    {
+        Console.WriteLine("Entity updating...");
+    }
+}
