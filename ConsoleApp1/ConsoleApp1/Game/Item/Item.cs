@@ -22,7 +22,7 @@ public class PokemonGame
         int available = new Random().Next(1, 21);
         int heal = 20;
         _pv += heal;
-        Console.WriteLine($"Used Potion Normal. Available: {available}, Heal: {heal}, New PV: {_pv}");
+        Console.WriteLine($"Potion Normal. Available: {available}, Heal: {heal}");
     }
 
     public void UsePotionMax()
@@ -30,7 +30,7 @@ public class PokemonGame
         int available = new Random().Next(1, 11);
         int heal = 50;
         _pv += heal;
-        Console.WriteLine($"Used Potion Max. Available: {available}, Heal: {heal}, New PV: {_pv}");
+        Console.WriteLine($"Potion Max. Available: {available}, Heal: {heal}");
     }
 
     public void UpgradeCapacityAttack()
@@ -38,7 +38,7 @@ public class PokemonGame
         int available = new Random().Next(1, 6);
         int boostAtt = 20;
         attackPokemon += boostAtt;
-        Console.WriteLine($"Upgraded Capacity Attack. Available: {available}, Boost Attack: {boostAtt}, New Attack: {attackPokemon}");
+        Console.WriteLine($"Upgraded Capacity Attack. Available: {available}, Boost Attack: {boostAtt}");
     }
 
     public void UpgradeCapacityDefense()
@@ -46,7 +46,7 @@ public class PokemonGame
         int available = new Random().Next(1, 6);
         int boostDef = 20;
         defencePokemon += boostDef;
-        Console.WriteLine($"Upgraded Capacity Defense. Available: {available}, Boost Defense: {boostDef}, New Defense: {defencePokemon}");
+        Console.WriteLine($"Upgraded Capacity Defense. Available: {available}, Boost Defense: {boostDef}");
     }
 
     public void UpgradeCapacitySpeed()
@@ -54,7 +54,7 @@ public class PokemonGame
         int available = new Random().Next(1, 6);
         int boostSpeed = 20;
         speedPokemon += boostSpeed;
-        Console.WriteLine($"Upgraded Capacity Speed. Available: {available}, Boost Speed: {boostSpeed}, New Speed: {speedPokemon}");
+        Console.WriteLine($"Upgraded Capacity Speed. Available: {available}, Boost Speed: {boostSpeed}");
     }
 
     public void UseCandyXp()
@@ -62,38 +62,38 @@ public class PokemonGame
         int available = new Random().Next(1, 16);
         int bonusXp = 100;
         xpPokemon += bonusXp;
-        Console.WriteLine($"Used Candy XP. Available: {available}, Bonus XP: {bonusXp}, New XP: {xpPokemon}");
+        Console.WriteLine($"Candy XP. Available: {available}, Bonus XP: {bonusXp}");
     }
 
     public void UsePokeBall()
     {
         int available = new Random().Next(25, 51);
-        double bonusCatch = 0;
+        int bonusCatch = 10;
         catchPokemon += bonusCatch;
-        Console.WriteLine($"Used Poke Ball. Available: {available}, Bonus Catch: {bonusCatch}%, New Catch Rate: {catchPokemon}%");
+        Console.WriteLine($"Poke Ball. Available: {available}, Bonus Catch: {bonusCatch}%");
     }
 
     public void UseSuperBall()
     {
         int available = new Random().Next(20, 41);
-        double bonusCatch = 10;
+        int bonusCatch = 20;
         catchPokemon += bonusCatch;
-        Console.WriteLine($"Used Super Ball. Available: {available}, Bonus Catch: {bonusCatch}%, New Catch Rate: {catchPokemon}%");
+        Console.WriteLine($"Super Ball. Available: {available}, Bonus Catch: {bonusCatch}%");
     }
 
     public void UseHyperBall()
     {
         int available = new Random().Next(5, 16);
-        double bonusCatch = 30;
+        int bonusCatch = 30;
         catchPokemon += bonusCatch;
-        Console.WriteLine($"Used Hyper Ball. Available: {available}, Bonus Catch: {bonusCatch}%, New Catch Rate: {catchPokemon}%");
+        Console.WriteLine($"Hyper Ball. Available: {available}, Bonus Catch: {bonusCatch}%");
     }
 
     public void UseMasterBall()
     {
         int available = 1;
-        double bonusCatch = 100;
+        int bonusCatch = 100;
         catchPokemon += bonusCatch;
-        Console.WriteLine($"Used Master Ball. Available: {available}, Bonus Catch: {bonusCatch}%, New Catch Rate: {catchPokemon}%");
+        Console.WriteLine($"Master Ball. Available: {available}, Bonus Catch: {bonusCatch}%");
     }
 }
