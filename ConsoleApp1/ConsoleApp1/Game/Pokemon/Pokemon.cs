@@ -79,50 +79,62 @@ namespace ConsoleApp1
                 {
                     if (PreViewThis[i][j] == MoveP.Up)
                     {
-                        f++;
+                        u++;
                     }
                     else if (PreViewThis[i][j] == MoveP.Down)
                     {
-                        --f;
+                        --u;
                     }
                     else if (PreViewThis[i][j] == MoveP.Left)
                     {
-                        --u;
+                        --f;
                     }
                     else if (PreViewThis[i][j] == MoveP.Right)
                     {
-                        u++;
+                        f++;
                     }
                 }
-                if (f <= window.Windowfigth1.Count()-1 && f >=0 && u <= window.Windowfigth1[0].Count()-1 && u >= 0)
+
+
+
+                if (u <= window.Windowfigth1.Count()-1 && u >=0 && f <= window.Windowfigth1[0].Count()-1 && f >= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     if(Who == 0) 
                     {
-                        Draw.DrawInCase(window.Windowfigth1[u][f], "MMM", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                        if (u <= window.Windowfigth1.Count() && u >= 0 && f <= window.Windowfigth1[0].Count() && f >= 0)
+                        {
+                            Draw.DrawInCase(window.Windowfigth1[f][u], "MMM", window.Windowfigth1[f][u].H / 2, window.Windowfigth1[f][u].W/2-1);
+                        }
+                        
                     }
                     else
                     {
-                        Draw.DrawInCase(window.Windowfigth1[u][f], "XXX", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                        if (u < window.Windowfigth1.Count() - 1 && u > 0 && f < window.Windowfigth1[0].Count() - 1 && f > 0)
+                        {
+                            Draw.DrawInCase(window.Windowfigth1[f][u], "XXX", window.Windowfigth1[f][u].H / 2, window.Windowfigth1[f][u].W / 2 - 1);
+                        }
                     }
                     
                     Console.ForegroundColor = ConsoleColor.White;
                     List<int> l = new List<int>();
                     l.Add(u);l.Add(f);
-                    if (Who == 0)
+                    if (u <= window.Windowfigth1.Count() - 1 && u >= 0 && f <= window.Windowfigth1[0].Count() - 1 && f >= 0)
                     {
-                        ViewMoveResult.Add(l);
-                    }
-                    else
-                    {
-                        ViewAttackResult.Add(l);
-                    }
+                        if (Who == 0)
+                        {
+                            ViewMoveResult.Add(l);
+                        }
+                        else
+                        {
+                            ViewAttackResult.Add(l);
+                        }
+                    } 
                 }
             }
         }
         public void DrawPokemon(Window window)
         {
-            Console.SetCursorPosition((p.X+1)*window.Windowfigth1[p.X][p.Y].H -5,( p.Y + 1 )* window.Windowfigth1[p.X][p.Y].W -5);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Draw.DrawInCase(window.Windowfigth1[p.X][p.Y], Icone);
             Console.ForegroundColor = ConsoleColor.White;

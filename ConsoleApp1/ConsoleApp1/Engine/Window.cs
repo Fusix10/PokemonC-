@@ -41,7 +41,7 @@ public class Window
     public Window(int x, int y)
     {
         Elcursor = new Cursor();
-        Elcursor.X = 1; Elcursor.Y = 0;
+        Elcursor.X = 5; Elcursor.Y = 0;
         Windowfigth = new List<List<Case>>();
 
         for (int i = 0; i < x; i++)
@@ -50,7 +50,7 @@ public class Window
             for (int j = 0; j < y; j++)
             {
                 UneCase = new Case();
-                UneCase.W = 7;
+                UneCase.W = 9;
                 UneCase.H = 5;
                 UneCase.Color = Color.WHITE;
                 UneCase.Pok = null;
@@ -88,7 +88,7 @@ public class Window
             int test = Windowfigth.Count();
         }
     }
-    public void DrawWindow()
+    public void DrawWindowFigth()
     {
         for (int i = 0; i < Windowfigth.Count; i++)
         {
@@ -97,25 +97,43 @@ public class Window
                 Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H);
                 if (Windowfigth[i][j].Color == Color.WHITE)
                 {
-                    for (int k = 0; k < Windowfigth[i][j].W; k++)
+                    for (int IncrementeH = 0; IncrementeH < Windowfigth[i][j].H; IncrementeH++)
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == Windowfigth[0][0].H-1)
+                            if (IncrementeH == 0 || IncrementeH == Windowfigth[0][0].H - 1)
                             {
-                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + IncrementeH);
                                 Console.BackgroundColor = ConsoleColor.White;
                                 Console.ForegroundColor = ConsoleColor.Black;
-                                Console.Write("[-----]");
+                                for(int IncrementeW = 0; IncrementeW < Windowfigth[0][0].W; IncrementeW++)
+                                {
+                                    if (IncrementeW == 0)
+                                    {
+                                        Console.Write("[");
+                                    }
+                                    else if (IncrementeW == Windowfigth[0][0].W - 1)
+                                    {
+                                        Console.Write("]");
+                                    }
+                                    else
+                                    {
+                                        Console.Write("-");
+                                    }
+                                }
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 Console.ForegroundColor = ConsoleColor.White;
                             }
                         }
                         else
                         {
-                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + IncrementeH);
                             Console.BackgroundColor = ConsoleColor.White;
-                            Console.Write("       ");
+                            for (int IncrementeW = 0; IncrementeW < Windowfigth[0][0].W; IncrementeW++)
+                            {
+                                Console.Write(" ");
+                                
+                            }
                             Console.BackgroundColor = ConsoleColor.Black;
                         }
                         
@@ -123,24 +141,41 @@ public class Window
                 }
                 else
                 {
-                    for (int k = 0; k < Windowfigth[i][j].W; k++)
+                    for (int IncrementeH = 0; IncrementeH < Windowfigth[i][j].H; IncrementeH++)
                     {
                         if (i == Elcursor.Y && j == Elcursor.X)
                         {
-                            if (k == 0 || k == Windowfigth[0][0].H - 1)
+                            if (IncrementeH == 0 || IncrementeH == Windowfigth[0][0].H - 1)
                             {
-                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                                Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + IncrementeH);
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 Console.ForegroundColor = ConsoleColor.White;
-                                Console.Write("[-----]");
+                                for (int IncrementeW = 0; IncrementeW < Windowfigth[0][0].W; IncrementeW++)
+                                {
+                                    if (IncrementeW == 0)
+                                    {
+                                        Console.Write("[");
+                                    }
+                                    else if (IncrementeW == Windowfigth[0][0].W - 1)
+                                    {
+                                        Console.Write("]");
+                                    }
+                                    else
+                                    {
+                                        Console.Write("-");
+                                    }
+                                }
                             }
                         }
                         else
                         {
-                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + k);
+                            Console.SetCursorPosition(j * Windowfigth[i][j].W, i * Windowfigth[i][j].H + IncrementeH);
                             Console.BackgroundColor = ConsoleColor.Black;
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("       ");
+                            for (int IncrementeW = 0; IncrementeW < Windowfigth[0][0].W; IncrementeW++)
+                            {
+                                Console.Write(" ");
+                            }
                         }
 
                     }

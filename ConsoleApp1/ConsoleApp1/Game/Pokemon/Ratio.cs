@@ -13,7 +13,12 @@ public class Ratio : Pokemon, IMove
 
     public Ratio(int Where, int x, int y) : base(Where, x ,y)
     {
-        Icone = "=/=(|   |)=/=|o|-|o|=/=*--b--*=/=|_____|";
+        
+ 
+
+
+
+        Icone = "=/=(|     |)=/= |_____|=/=|[]   []|=/=| * T  *|=/=| _____ |";
         ELMouvement1 = new List<MoveP>();
         ELMouvement1.Clear();
         ELMouvement1.Add(IMove.MoveP.Up);

@@ -18,11 +18,11 @@ public class Engine
         CreationPlayer();
         Console.Clear();
         aled = new Window(9, 10);
-        aled.DrawWindow();
-        ratio = new Ratio(0, 5, 5);
+        aled.DrawWindowFigth();
+        ratio = new Ratio(0, 3, 0);
         player.Inventory.AddPokemon(ratio);
         inputManager.Awake();
-        aled.DrawWindow();
+        aled.DrawWindowFigth();
         ratio.DrawPokemon(aled);
     }
     public void Update()
@@ -54,7 +54,7 @@ public class Engine
             if (aled.Elcursor1.Y > 0)
             {
                 --aled.Elcursor1.Y;
-                aled.DrawWindow();
+                aled.DrawWindowFigth();
                 ratio.DrawPokemon(aled);
 
             }
@@ -64,7 +64,7 @@ public class Engine
             if (aled.Elcursor1.Y < aled.Windowfigth1.Count() - 1)
             {
                 ++aled.Elcursor1.Y;
-                aled.DrawWindow();
+                aled.DrawWindowFigth();
                 ratio.DrawPokemon(aled);
 
             }
@@ -74,7 +74,7 @@ public class Engine
             if (aled.Elcursor1.X > 0)
             {
                 --aled.Elcursor1.X;
-                aled.DrawWindow();
+                aled.DrawWindowFigth();
                 ratio.DrawPokemon(aled);
 
             }
@@ -84,7 +84,7 @@ public class Engine
             if (aled.Elcursor1.X < aled.Windowfigth1[0].Count() - 1)
             {
                 ++aled.Elcursor1.X;
-                aled.DrawWindow();
+                aled.DrawWindowFigth();
                 ratio.DrawPokemon(aled);
 
             }
@@ -98,7 +98,7 @@ public class Engine
         else if (inputManager.Ivalue == 5 && aled.Elcursor1.X == ratio.P.X && aled.Elcursor1.Y == ratio.P.Y && PreMove == true)
         {
             PreMove = false;
-            aled.DrawWindow();
+            aled.DrawWindowFigth();
             ratio.DrawPokemon(aled);
         }
         else if (inputManager.Ivalue == 5 && PreMove == true)
@@ -112,10 +112,11 @@ public class Engine
                     ratio.P.X = ratio.ViewMoveResult1[i][0];
                     ratio.P.Y = ratio.ViewMoveResult1[i][1];
                     aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = ratio;
-                    aled.DrawWindow();
+                    aled.DrawWindowFigth();
                     ratio.DrawPokemon(aled);
                     PreMove = false;
                     ratio.ViewMoveResult1.Clear();
+                    ratio.ViewAttackResult.Clear();
                     break;
                 }
 
