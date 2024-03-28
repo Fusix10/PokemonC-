@@ -73,8 +73,8 @@ namespace ConsoleApp1
 
             for (int i = 0; i < PreViewThis.Count; i++)
             {
-                int u = p.X;
-                int f = p.Y;
+                int u = p.Y;
+                int f = p.X;
                 for (int j = 0; j < PreViewThis[i].Count; j++)
                 {
                     if (PreViewThis[i][j] == MoveP.Up)
@@ -102,9 +102,9 @@ namespace ConsoleApp1
                     Console.ForegroundColor = ConsoleColor.Red;
                     if(Who == 0) 
                     {
-                        if (u <= window.Windowfigth1.Count() && u >= 0 && f <= window.Windowfigth1[0].Count() && f >= 0)
+                        if (u <= window.Windowfigth1.Count() - 1 && u >= 0 && f <= window.Windowfigth1[0].Count() - 1 && f >= 0)
                         {
-                            Draw.DrawInCase(window.Windowfigth1[f][u], "MMM", window.Windowfigth1[f][u].H / 2, window.Windowfigth1[f][u].W/2-1);
+                            Draw.DrawInCase(window.Windowfigth1[8][0], "MMM", window.Windowfigth1[8][0].H / 2, window.Windowfigth1[8][0].W/2-1);
                         }
                         
                     }

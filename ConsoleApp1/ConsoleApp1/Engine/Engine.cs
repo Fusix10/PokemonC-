@@ -111,7 +111,7 @@ public class Engine
                     aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = null;
                     ratio.P.X = ratio.ViewMoveResult1[i][0];
                     ratio.P.Y = ratio.ViewMoveResult1[i][1];
-                    aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = ratio;
+                    aled.Windowfigth1[ratio.P.Y][ratio.P.X].Pok = ratio;
                     aled.DrawWindowFigth();
                     ratio.DrawPokemon(aled);
                     PreMove = false;
