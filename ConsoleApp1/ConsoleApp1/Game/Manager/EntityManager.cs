@@ -1,47 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using ConsoleApp1;
 
-class EntityManager
+
+public class EntityManager
 {
-    private List<Entity> entities;
+    List<Pokemon> Team1;
+    List<Pokemon> Team2;
+    
+    public List<Pokemon> Team11 { get => Team1; }
+    public List<Pokemon> Team21 { get => Team2; }
 
-    public EntityManager()
+    private void AddPok(Pokemon u, int Who)
     {
-        entities = new List<Entity>();
+        if (Who == 1)
+
+        {
+            Team1.Add(u);
+        }
+        if (Who == 2)
+        {
+            Team2.Add(u);
+        }
     }
 
-    public void AddEntity(Entity entity)
+    private void DeletePok(int i, int Who)
     {
-        entities.Add(entity);
-        //entity.SetEntityManager(this); // Permet à l'entité de connaître son EntityManager
+        if (Who == 1)
+        {
+            Team1.Remove(Team1[i]);
+        }
+        
+        if (Who == 2)
+        {
+            Team2.Remove(Team2[i]);
+        }
     }
 
-    public void RemoveEntity(Entity entity)
+
+
+    public void RemoveEntity(EntityData entity)
     {
         entities.Remove(entity);
     }
 
+  
+  
     public void UpdateEntities()
     {
-        foreach (Entity entity in entities)
+        foreach (var entity in entities)
         {
-            entity.Update();
+            // Mettez à jour chaque entité en fonction de son type
+            switch (entity.Type)
+            {
+                case EntityType.Pokemon:
+                    // Mettez à jour le Pokémon
+                    break;
+                case EntityType.Player:
+                    // Mettez à jour le joueur
+                    break;
+            }
         }
     }
 }
-
-class Entity
-{
-    protected EntityManager? entityManager;
-
-    public void SetEntityManager(EntityManager manager)
-    {
-        entityManager = manager;
-    }
-
-    public virtual void Update()
-    {
-        Console.WriteLine("Entity updating...");
-    }
-}
-
