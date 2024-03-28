@@ -123,7 +123,7 @@ public class Engine
 
     void CreationPlayer() 
     {
-        Console.WriteLine("Bonjours ! voici dans une version bêta de PokeChess\nveuilleur choisir un nom et une age pour votre perso:\n");
+        Console.WriteLine("Bonjours ! voici dans une version bêta de PokeChess\nveuillez choisir un nom et une age pour votre perso:\n");
         String ?Recup = Console.ReadLine();
         Console.WriteLine("\n");
         while (Recup == null)
