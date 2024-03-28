@@ -7,6 +7,7 @@ public class Engine
 {
     InputManager inputManager = new InputManager();
     Ratio ratio;
+    Ratio ratio2;
     Window aled;
     Player player;
     bool PreMove = false;
@@ -17,13 +18,16 @@ public class Engine
         player = new Player();
         CreationPlayer();
         Console.Clear();
-        aled = new Window(9, 10);
+        aled = new Window(10, 9);
         aled.DrawWindowFigth();
-        ratio = new Ratio(0, 3, 0);
+        ratio = new Ratio(0, 0, 0);
+        ratio2 = new Ratio(1, 8, 8);
         player.Inventory.AddPokemon(ratio);
         inputManager.Awake();
         aled.DrawWindowFigth();
         ratio.DrawPokemon(aled);
+        ratio2.DrawPokemon(aled);
+        aled.Windowfigth1[ratio2.P.X][ratio2.P.Y].Pok = ratio2;
     }
     public void Update()
     {
@@ -31,9 +35,9 @@ public class Engine
         while (ingame)
         {
             inputManager.Update();
-
-            InputFolder();
             
+            InputFolder();
+            ratio2.DrawPokemon(aled);
 
             if (PreMove == true)
             {
@@ -61,7 +65,7 @@ public class Engine
         }
         else if (inputManager.Ivalue == 2)
         {
-            if (aled.Elcursor1.Y < aled.Windowfigth1.Count() - 1)
+            if (aled.Elcursor1.Y < aled.Windowfigth1[0].Count() - 1)
             {
                 ++aled.Elcursor1.Y;
                 aled.DrawWindowFigth();
@@ -81,7 +85,7 @@ public class Engine
         }
         else if (inputManager.Ivalue == 4)
         {
-            if (aled.Elcursor1.X < aled.Windowfigth1[0].Count() - 1)
+            if (aled.Elcursor1.X < aled.Windowfigth1.Count() - 1)
             {
                 ++aled.Elcursor1.X;
                 aled.DrawWindowFigth();
@@ -111,7 +115,7 @@ public class Engine
                     aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = null;
                     ratio.P.X = ratio.ViewMoveResult1[i][0];
                     ratio.P.Y = ratio.ViewMoveResult1[i][1];
-                    aled.Windowfigth1[ratio.P.Y][ratio.P.X].Pok = ratio;
+                    aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = ratio;
                     aled.DrawWindowFigth();
                     ratio.DrawPokemon(aled);
                     PreMove = false;
@@ -155,7 +159,7 @@ public class Engine
         Recup = null;
         Recup = Console.ReadLine();
         Console.WriteLine("\n");
-        while (Recup == null || Recup == "" || Recup == " ")
+        while (Recup[0] == null || Recup == "" || Recup == " ")
         {
             Console.WriteLine("je ne sais pas qu'esque ta écrit mais RATIO + CHEH\n");
             Console.WriteLine("bon allez ton Age ?:\n");

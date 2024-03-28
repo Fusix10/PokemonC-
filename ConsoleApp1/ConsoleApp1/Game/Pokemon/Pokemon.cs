@@ -52,19 +52,19 @@ namespace ConsoleApp1
             {
                 if (mouvement[IsTheMove][j] == MoveP.Up)
                 {
-                    p.Y = p.Y + 1;
+                    p.X = p.X + 1;
                 }
                 else if (mouvement[IsTheMove][j] == MoveP.Down)
                 {
-                    p.Y = p.Y - 1;
+                    p.X = p.X - 1;
                 }
                 else if (mouvement[IsTheMove][j] == MoveP.Left)
                 {
-                    p.X = p.X - 1;
+                    p.Y = p.Y - 1;
                 }
                 else if (mouvement[IsTheMove][j] == MoveP.Right)
                 {
-                    p.X = p.X + 1;
+                    p.Y = p.Y + 1;
                 }
             }
         }
@@ -73,8 +73,8 @@ namespace ConsoleApp1
 
             for (int i = 0; i < PreViewThis.Count; i++)
             {
-                int u = p.Y;
-                int f = p.X;
+                int u = p.X;
+                int f = p.Y;
                 for (int j = 0; j < PreViewThis[i].Count; j++)
                 {
                     if (PreViewThis[i][j] == MoveP.Up)
@@ -97,39 +97,37 @@ namespace ConsoleApp1
 
 
 
-                if (u <= window.Windowfigth1.Count()-1 && u >=0 && f <= window.Windowfigth1[0].Count()-1 && f >= 0)
+                if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     if(Who == 0) 
                     {
-                        if (u <= window.Windowfigth1.Count() - 1 && u >= 0 && f <= window.Windowfigth1[0].Count() - 1 && f >= 0)
+                        if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
                         {
-                            Draw.DrawInCase(window.Windowfigth1[8][0], "MMM", window.Windowfigth1[8][0].H / 2, window.Windowfigth1[8][0].W/2-1);
+                            Draw.DrawInCase(window.Windowfigth1[u][f], "MMM", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
                         }
                         
                     }
                     else
                     {
-                        if (u < window.Windowfigth1.Count() - 1 && u > 0 && f < window.Windowfigth1[0].Count() - 1 && f > 0)
+                        if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
                         {
-                            Draw.DrawInCase(window.Windowfigth1[f][u], "XXX", window.Windowfigth1[f][u].H / 2, window.Windowfigth1[f][u].W / 2 - 1);
+                            Draw.DrawInCase(window.Windowfigth1[u][f], "XXX", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
                         }
                     }
                     
                     Console.ForegroundColor = ConsoleColor.White;
                     List<int> l = new List<int>();
                     l.Add(u);l.Add(f);
-                    if (u <= window.Windowfigth1.Count() - 1 && u >= 0 && f <= window.Windowfigth1[0].Count() - 1 && f >= 0)
+                    if (Who == 0)
                     {
-                        if (Who == 0)
-                        {
-                            ViewMoveResult.Add(l);
-                        }
-                        else
-                        {
-                            ViewAttackResult.Add(l);
-                        }
-                    } 
+                        ViewMoveResult.Add(l);
+                    }
+                    else
+                    {
+                        ViewAttackResult.Add(l);
+                    }
+
                 }
             }
         }
