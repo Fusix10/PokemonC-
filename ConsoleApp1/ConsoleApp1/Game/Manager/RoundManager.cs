@@ -50,52 +50,52 @@ public class RoundManager
     }
     public void Update()
     {
+        if (Engine.instance.InputManager.Ivalue == 10)
+        {
+            Engine.instance.Ingame = false;
+        }
+        else if (Engine.instance.InputManager.Ivalue == 1)
+        {
+            if (Engine.instance.Window1.Elcursor1.Y > 0)
+            {
+                --Engine.instance.Window1.Elcursor1.Y;
+                Engine.instance.Window1.DrawWindowFigth();
+                DrawListPok();
+            }
+        }
+        else if (Engine.instance.InputManager.Ivalue == 2)
+        {
+            if (Engine.instance.Window1.Elcursor1.Y < Engine.instance.Window1.Windowfigth1[0].Count() - 1)
+            {
+                ++Engine.instance.Window1.Elcursor1.Y;
+                Engine.instance.Window1.DrawWindowFigth();
+                DrawListPok();
+
+            }
+        }
+        else if (Engine.instance.InputManager.Ivalue == 3)
+        {
+            if (Engine.instance.Window1.Elcursor1.X > 0)
+            {
+                --Engine.instance.Window1.Elcursor1.X;
+                Engine.instance.Window1.DrawWindowFigth();
+                DrawListPok();
+
+            }
+        }
+        else if (Engine.instance.InputManager.Ivalue == 4)
+        {
+            if (Engine.instance.Window1.Elcursor1.X < Engine.instance.Window1.Windowfigth1.Count() - 1)
+            {
+                ++Engine.instance.Window1.Elcursor1.X;
+                Engine.instance.Window1.DrawWindowFigth();
+                DrawListPok();
+
+            }
+        }
         for (int i = 0; i < EquipeJoueur.Count(); i++)
         {
-            if (Engine.instance.InputManager.Ivalue == 10)
-            {
-                Engine.instance.Ingame = false;
-            }
-            else if (Engine.instance.InputManager.Ivalue == 1)
-            {
-                if (Engine.instance.Window1.Elcursor1.Y > 0)
-                {
-                    --Engine.instance.Window1.Elcursor1.Y;
-                    Engine.instance.Window1.DrawWindowFigth();
-                    DrawListPok();
-                }
-            }
-            else if (Engine.instance.InputManager.Ivalue == 2)
-            {
-                if (Engine.instance.Window1.Elcursor1.Y < Engine.instance.Window1.Windowfigth1[0].Count() - 1)
-                {
-                    ++Engine.instance.Window1.Elcursor1.Y;
-                    Engine.instance.Window1.DrawWindowFigth();
-                    DrawListPok();
-
-                }
-            }
-            else if (Engine.instance.InputManager.Ivalue == 3)
-            {
-                if (Engine.instance.Window1.Elcursor1.X > 0)
-                {
-                    --Engine.instance.Window1.Elcursor1.X;
-                    Engine.instance.Window1.DrawWindowFigth();
-                    DrawListPok();
-
-                }
-            }
-            else if (Engine.instance.InputManager.Ivalue == 4)
-            {
-                if (Engine.instance.Window1.Elcursor1.X < Engine.instance.Window1.Windowfigth1.Count() - 1)
-                {
-                    ++Engine.instance.Window1.Elcursor1.X;
-                    Engine.instance.Window1.DrawWindowFigth();
-                    DrawListPok();
-
-                }
-            }
-            else if (Engine.instance.InputManager.Ivalue == 5 && Engine.instance.Window1.Elcursor1.X == EquipeJoueur[i].P.X && Engine.instance.Window1.Elcursor1.Y == EquipeJoueur[i].P.Y && EquipeJoueur[i].P.View1 == false)
+            if (Engine.instance.InputManager.Ivalue == 5 && Engine.instance.Window1.Elcursor1.X == EquipeJoueur[i].P.X && Engine.instance.Window1.Elcursor1.Y == EquipeJoueur[i].P.Y && EquipeJoueur[i].P.View1 == false)
             {
                 ViewMovePok2(Engine.instance.Window1.Elcursor1.X, Engine.instance.Window1.Elcursor1.Y, true);
                 ViewMovePok(Engine.instance.Window1.Elcursor1.X, Engine.instance.Window1.Elcursor1.Y);
@@ -122,8 +122,8 @@ public class RoundManager
                 if (VerifXYtoCursor(EquipeJoueur[i], 1) == true)
                 {
                     Engine.instance.Window1.Windowfigth1[Engine.instance.Window1.Elcursor1.X][Engine.instance.Window1.Elcursor1.Y].Pok.TakeDommage(EquipeJoueur[i].Dmg);
-                    ViewMovePok2(Engine.instance.Window1.Elcursor1.X, Engine.instance.Window1.Elcursor1.Y, false);
-                    Console.WriteLine("dans ta geule");
+                    ViewMovePok2(EquipeJoueur[i].P.X, EquipeJoueur[i].P.Y, false);
+                    Console.WriteLine("dans ta poire");
                     EquipeJoueur[i].ViewMoveResult1.Clear();
                     break;
                 }  
@@ -135,10 +135,6 @@ public class RoundManager
         }
         
 
-    }
-    public bool Cancel()
-    {
-        return false;
     }
     private void DrawListPok()
     {
@@ -169,13 +165,6 @@ public class RoundManager
                 P.P.View1 = t;
             }
         }
-    }
-    private bool VerifXYtoCursor(int x, int y)
-    {
-        if(Engine.instance.Window1.Elcursor1.X == x && Engine.instance.Window1.Elcursor1.Y == y)
-            return true;
-
-        return false;
     }
 
     private bool VerifXYtoCursor(Pokemon pok, int Who)

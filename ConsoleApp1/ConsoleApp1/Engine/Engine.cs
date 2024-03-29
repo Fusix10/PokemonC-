@@ -24,6 +24,7 @@ public class Engine
         Window = new Window(10, 9);
         Window.DrawWindowFigth();
         player.Inventory.AddPokemonInvActuel(new Pikachute(0, 0, 0));
+        player.Inventory.AddPokemonInvActuel(new Pikachute(1, 1, 1));
         inputManager.Awake();
         Window.DrawWindowFigth();
         roundManager = new RoundManager();
