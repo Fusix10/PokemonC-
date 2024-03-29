@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 
 internal class Map
 {
     public class CharactereDesc
     {
         public char Character { get; set; }
-        public Color Color { get; set; }
         public bool CanPassThrough { get; set; }
     }
 
@@ -15,6 +12,10 @@ internal class Map
     public string myMap;
     public Player Player { get; set; }
     private Random random = new Random();
+
+    // Position du dresseur ennemi
+    private int enemyTrainerX = 20;
+    private int enemyTrainerY = 5;
 
     public Map()
     {
@@ -33,8 +34,9 @@ internal class Map
         "#                                               ^^^^^^^^^^^^^^^^^^^^^^^^            #\r\n" +
         "#                                               ^^^^^^^^^^^^^^^^^^^^^^^^            #\r\n" +
         "#                                               ^^^^^^^^^^^^^^^^^^^^^^^^            #\r\n" +
+        "#                                               ^^^^^^^^^^^^^^^^^^^^^^^^            #\r\n" +
         "#    ^^^^^^^^^^^^^^^^^^^^^^^                                   ________________     #\r\n" +
-        "#    ^^^^^^^^^^^^^^^^^^^^^^^                                  <_ New map Soon _>    #\r\n" +
+        "#    ^^^^^^^^^^^^^^^^^^^^^^^                      &            <_ New map Soon _>   #\r\n" +
         "#    ^^^^^^^^^^^^^^^^^^^^^^^                                         ^|^            #\r\n" +
         "#    ^^^^^^^^^^^^^^^^^^^^^^^                                          |             #\r\n" +
         "#                                                                                   #\r\n" +
@@ -46,15 +48,13 @@ internal class Map
 
     private void PlacePlayerOnMap(int x, int y)
     {
-        // Mettre à jour la position du joueur sur la carte
         Player.X = x;
         Player.Y = y;
 
-        // Mettre à jour la carte avec la position du joueur
         char[] mapArray = myMap.ToCharArray();
-        int width = myMap.IndexOf("\r\n") + 2; // Largeur de la carte (en tenant compte des retours à la ligne)
+        int width = myMap.IndexOf("\r\n") + 2;
         int index = (y * width) + x;
-        mapArray[index] = '*'; // Placez le joueur sur la carte
+        mapArray[index] = '*';
         myMap = new string(mapArray);
     }
 
@@ -84,6 +84,7 @@ internal class Map
             Player.X = newX;
             Player.Y = newY;
             CheckForWildPokemon();
+            CheckForEnemyTrainer();
         }
     }
 
@@ -95,19 +96,28 @@ internal class Map
     private bool CanMoveTo(int x, int y)
     {
         int index = (y * (myMap.IndexOf("\r\n") + 2)) + x;
-        return myMap[index] == ' ' || myMap[index] == '^'; // Vérifiez si la case est vide ou une herbe haute
+        return myMap[index] == ' ' || myMap[index] == '^'; // la case est vide ou y'a une herbe haute
     }
 
     private void CheckForWildPokemon()
     {
         if (myMap[Player.Y * (myMap.IndexOf("\r\n") + 2) + Player.X] == '^')
         {
-            if (random.Next(2) == 0) // 50% de chance de rencontrer un Pokémon sauvage
+            if (random.Next(2) == 0) // y'a 50% de chance de rencontrer un Pokémon sauvage
             {
-                // Déclenchez l'événement de combat Pokémon sauvage
                 Console.WriteLine("Un Pokémon sauvage apparaît !");
-                //  apel la phase de combat
+                //  apeler la phase de combat
             }
+        }
+    }
+
+    private void CheckForEnemyTrainer()
+    {
+        if (Player.X == enemyTrainerX && Player.Y == enemyTrainerY)
+        {
+            Console.WriteLine("Un dresseur ennemi apparaît !");
+            // Déclenchez l'événement de combat avec le dresseur ennemi
+            // apeler la phase de combat avec le dresseur ennemi
         }
     }
 }
