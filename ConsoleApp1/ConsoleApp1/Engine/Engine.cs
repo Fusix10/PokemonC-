@@ -5,142 +5,46 @@ using System.Xml.Linq;
 
 public class Engine
 {
+    public static Engine? instance;
+    
     InputManager inputManager = new InputManager();
-    Ratio ratio;
-    Ratio ratio2;
-    Window aled;
+    RoundManager roundManager;
+    Window Window;
     Player player;
     bool PreMove = false;
     bool ingame = true;
+    
     public Engine()
     {
+        instance = this;
         Console.SetWindowSize(Console.LargestWindowWidth,Console.LargestWindowHeight);
         player = new Player();
         CreationPlayer();
         Console.Clear();
-        aled = new Window(10, 9);
-        aled.DrawWindowFigth();
-        ratio = new Ratio(0, 0, 0);
-        ratio2 = new Ratio(1, 8, 8);
-        player.Inventory.AddPokemon(ratio);
+        Window = new Window(10, 9);
+        Window.DrawWindowFigth();
+        player.Inventory.AddPokemonInvActuel(new Pikachute(0, 0, 0));
         inputManager.Awake();
-        aled.DrawWindowFigth();
-        ratio.DrawPokemon(aled);
-        ratio2.DrawPokemon(aled);
-        aled.Windowfigth1[ratio2.P.X][ratio2.P.Y].Pok = ratio2;
+        Window.DrawWindowFigth();
+        roundManager = new RoundManager();
     }
+
+    public bool Ingame {set => ingame = value; }
+    public Window Window1 { get => Window; }
+    public InputManager InputManager { get => inputManager;}
+    public Player Player { get => player; set => player = value; }
+
     public void Update()
     {
         
         while (ingame)
         {
             inputManager.Update();
-            
-            InputFolder();
-            ratio2.DrawPokemon(aled);
+            roundManager.Update();
 
-            if (PreMove == true)
-            {
-                ratio.ViewMove(aled,ratio.Mouvement,0);
-                ratio.ViewMove(aled, ratio.RangeAttack, 1);
-            }
         }
     }
-    void InputFolder()
-    {
-        if (inputManager.Ivalue == 10)
-        {
-            ingame = false;
-
-        }
-        else if (inputManager.Ivalue == 1)
-        {
-            if (aled.Elcursor1.Y > 0)
-            {
-                --aled.Elcursor1.Y;
-                aled.DrawWindowFigth();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 2)
-        {
-            if (aled.Elcursor1.Y < aled.Windowfigth1[0].Count() - 1)
-            {
-                ++aled.Elcursor1.Y;
-                aled.DrawWindowFigth();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 3)
-        {
-            if (aled.Elcursor1.X > 0)
-            {
-                --aled.Elcursor1.X;
-                aled.DrawWindowFigth();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 4)
-        {
-            if (aled.Elcursor1.X < aled.Windowfigth1.Count() - 1)
-            {
-                ++aled.Elcursor1.X;
-                aled.DrawWindowFigth();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 5 && aled.Elcursor1.X == ratio.P.X && aled.Elcursor1.Y == ratio.P.Y && PreMove == false)
-        {
-            PreMove = true;
-            ratio.ViewMove(aled, ratio.Mouvement, 0);
-            ratio.ViewMove(aled, ratio.RangeAttack, 1);
-        }
-        else if (inputManager.Ivalue == 5 && aled.Elcursor1.X == ratio.P.X && aled.Elcursor1.Y == ratio.P.Y && PreMove == true)
-        {
-            PreMove = false;
-            aled.DrawWindowFigth();
-            ratio.DrawPokemon(aled);
-        }
-        else if (inputManager.Ivalue == 5 && PreMove == true)
-        {
-            for (int i = 0; i < ratio.ViewMoveResult1.Count(); i++)
-            {
-
-                if (aled.Elcursor1.X == ratio.ViewMoveResult1[i][0] && aled.Elcursor1.Y == ratio.ViewMoveResult1[i][1])
-                {
-                    aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = null;
-                    ratio.P.X = ratio.ViewMoveResult1[i][0];
-                    ratio.P.Y = ratio.ViewMoveResult1[i][1];
-                    aled.Windowfigth1[ratio.P.X][ratio.P.Y].Pok = ratio;
-                    aled.DrawWindowFigth();
-                    ratio.DrawPokemon(aled);
-                    PreMove = false;
-                    ratio.ViewMoveResult1.Clear();
-                    ratio.ViewAttackResult.Clear();
-                    break;
-                }
-
-            }
-            for (int i = 0; i < ratio.ViewAttackResult.Count(); i++)
-            {
-                if (aled.Elcursor1.X == ratio.ViewAttackResult[i][0] && aled.Elcursor1.Y == ratio.ViewAttackResult[i][1])
-                {
-                    if (aled.Windowfigth1[aled.Elcursor1.X][aled.Elcursor1.Y].Pok != null)
-                    {
-                        aled.Windowfigth1[aled.Elcursor1.X][aled.Elcursor1.Y].Pok.TakeDommage(ratio.Dmg);
-                        PreMove = false;
-                        Console.WriteLine("dans ta geule");
-                        ratio.ViewMoveResult1.Clear();
-                        break;
-                    }
-                }
-            }
-        }
-    }
+    
 
     void CreationPlayer() 
     {

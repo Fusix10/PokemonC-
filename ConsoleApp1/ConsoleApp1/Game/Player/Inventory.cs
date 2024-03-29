@@ -8,12 +8,14 @@ using ConsoleApp1;
 internal class Inventory
 {
     List<List<Pokemon>> Pokedex;
+    List<Pokemon> InvActuel;
     public List<List<Pokemon>> Pokedex1 { get => Pokedex;}
+    public List<Pokemon> InvActuel1 { get => InvActuel; set => InvActuel = value; }
     public Inventory()
     {
         Pokedex = new List<List<Pokemon>>();
+        InvActuel = new List<Pokemon>();
     }
-
     public void AddPokemon(Pokemon Poke)
     {
         
@@ -48,6 +50,17 @@ internal class Inventory
                     Pokedex[j].Add(PokePass[j]);
                 }
             }
+        }
+    }
+    public void AddPokemonInvActuel(Pokemon Poke)
+    {
+        InvActuel.Add(Poke);
+    }
+    public void AddPokemonInvActuel(List<Pokemon> Poke)
+    {
+        for(int i = 0;i < Poke.Count(); i++)
+        {
+            InvActuel.Add(Poke[i]);
         }
     }
 }

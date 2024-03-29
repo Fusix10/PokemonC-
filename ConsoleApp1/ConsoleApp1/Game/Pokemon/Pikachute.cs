@@ -8,21 +8,17 @@ using ConsoleApp1;
 using static System.Formats.Asn1.AsnWriter;
 using static IMove;
 
-public class Ratio : Pokemon, IMove
+public class Pikachute : Pokemon, IMove
 {
 
-    public Ratio(int Where, int x, int y) : base(Where, x ,y)
+    public Pikachute(int Where, int x, int y) : base(Where, x ,y)
     {
-
-
-
-
-
         Icone = "=/=(|     |)" +
                 "=/= |_____|" +
-                "=/=|[]   []|" +
-                "=/=| * T  *|" +
-                "=/=| _____ |";
+                "=/=| []  []|" +
+                "=/=|// * T*|" +
+                "=/=|//____ |";
+
         ELMouvement1 = new List<MoveP>();
         ELMouvement1.Clear();
         ELMouvement1.Add(IMove.MoveP.Up);

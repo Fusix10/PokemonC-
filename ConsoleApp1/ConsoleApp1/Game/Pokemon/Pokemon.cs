@@ -1,4 +1,5 @@
-﻿using static IMove;
+﻿using System.Reflection.Metadata.Ecma335;
+using static IMove;
 
 namespace ConsoleApp1
 {
@@ -7,10 +8,12 @@ namespace ConsoleApp1
         public class Pos
         {
             int x, y;
+            bool View;
 
             public int X { get => x; set => x = value; }
             public int Y { get => y; set => y = value; }
-        }
+            public bool View1 { get => View; set => View = value; }
+        } 
         protected List<List<int>> ViewMoveResult;
         private List<List<int>> viewAttackResult;
         protected String Icone;
@@ -33,6 +36,7 @@ namespace ConsoleApp1
 
         public Pokemon(int Where, int x, int y)
         {
+            
             ViewMoveResult = new List<List<int>>();
             ViewAttackResult = new List<List<int>>();
             p = new Pos();
@@ -44,6 +48,7 @@ namespace ConsoleApp1
             rangeAttack = new List<List<MoveP>>();
             p.X = x;
             p.Y = y;
+            p.View1 = false;
 
         }
         void IMove.MakeMove(int IsTheMove)
