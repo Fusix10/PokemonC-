@@ -1,30 +1,49 @@
 ﻿using ConsoleApp1;
+using System.ComponentModel;
 using System.Numerics;
 using System.Xml.Linq;
 
 public class Engine
 {
+    public static Engine? instance;
+    
     InputManager inputManager = new InputManager();
-    Ratio ratio;
-    Window aled;
+    RoundManager roundManager;
+    Window Window;
     Player player;
     bool PreMove = false;
     bool ingame = true;
+
+
+
+    bool fight = false;
+    Map exploMap;
+    
     public Engine()
     {
+        instance = this;
+        Console.SetWindowSize(Console.LargestWindowWidth,Console.LargestWindowHeight);
         player = new Player();
         CreationPlayer();
         Console.Clear();
-        aled = new Window(5, 5);
-        aled.DrawWindow();
-        ratio = new Ratio(0);
-        player.Inventory.AddPokemon(ratio);
-        aled = new Window(5, 5);
+        Window = new Window(10, 9);
+        Window.DrawWindowFigth();
+        player.Inventory.AddPokemonInvActuel(new Pikachute(0, 0, 0));
+        player.Inventory.AddPokemonInvActuel(new Pikachute(1, 1, 1));
         inputManager.Awake();
-        aled.DrawWindow();
-        ratio.DrawPokemon(aled);
-        
+        Window.DrawWindowFigth();
+        roundManager = new RoundManager();
+
+
+
+        exploMap = new();
     }
+
+    public bool Ingame {set => ingame = value; }
+    public Window Window1 { get => Window; }
+    public InputManager InputManager { get => inputManager;}
+    public Player Player { get => player; set => player = value; }
+
     public void Update()
     {
         
@@ -32,101 +51,33 @@ public class Engine
         {
             inputManager.Update();
 
-            InputFolder();
-            
-
-            if (PreMove == true)
+            if(!fight)
             {
-                ratio.ViewMove(aled);
+                exploMap.Update();
+                continue;
             }
+
+            roundManager.Update();
+
         }
     }
-    void InputFolder()
+    
+
+    public void LaunchBattle()
     {
-        if (inputManager.Ivalue == 10)
-        {
-            ingame = false;
+        fight = true;
 
-        }
-        else if (inputManager.Ivalue == 1)
-        {
-            if (aled.Elcursor1.Y > 0)
-            {
-                --aled.Elcursor1.Y;
-                aled.DrawWindow();
-                ratio.DrawPokemon(aled);
+        roundManager.AddPok(new Pikachute(3, 5, 3), 2);
 
-            }
-        }
-        else if (inputManager.Ivalue == 2)
-        {
-            if (aled.Elcursor1.Y < 4)
-            {
-                ++aled.Elcursor1.Y;
-                aled.DrawWindow();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 3)
-        {
-            if (aled.Elcursor1.X > 0)
-            {
-                --aled.Elcursor1.X;
-                aled.DrawWindow();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 4)
-        {
-            if (aled.Elcursor1.X < 4)
-            {
-                ++aled.Elcursor1.X;
-                aled.DrawWindow();
-                ratio.DrawPokemon(aled);
-
-            }
-        }
-        else if (inputManager.Ivalue == 5 && aled.Elcursor1.X == ratio.P.X && aled.Elcursor1.Y == ratio.P.Y && PreMove == false)
-        {
-            PreMove = true;
-            ratio.ViewMove(aled);
-        }
-        else if (inputManager.Ivalue == 5 && aled.Elcursor1.X == ratio.P.X && aled.Elcursor1.Y == ratio.P.Y && PreMove == true)
-        {
-            PreMove = false;
-            aled.DrawWindow();
-            ratio.DrawPokemon(aled);
-        }
-        else if (inputManager.Ivalue == 5 && PreMove == true)
-        {
-            for (int i = 0; i < ratio.ViewMoveResult1.Count(); i++)
-            {
-
-                if (aled.Elcursor1.X == ratio.ViewMoveResult1[i][0] && aled.Elcursor1.Y == ratio.ViewMoveResult1[i][1])
-                {
-
-                    ratio.P.X = ratio.ViewMoveResult1[i][0];
-
-
-                    ratio.P.Y = ratio.ViewMoveResult1[i][1];
-
-                    aled.DrawWindow();
-                    ratio.DrawPokemon(aled);
-                }
-
-
-            }
-        }
     }
+
 
     void CreationPlayer() 
     {
         Console.WriteLine("Bonjours ! voici dans une version bêta de PokeChess\nveuilleur choisir un nom et une age pour votre perso:\n");
         String ?Recup = Console.ReadLine();
         Console.WriteLine("\n");
-        while (Recup == null)
+        while (Recup == null || Recup == "" || Recup == " ")
         {
             Console.WriteLine("je ne sais pas qu'esque ta écrit mais RATIO + CHEH\n");
             Console.WriteLine("bon allez ton name ?:\n");
@@ -138,7 +89,7 @@ public class Engine
         Recup = null;
         Recup = Console.ReadLine();
         Console.WriteLine("\n");
-        while (Recup == null) 
+        while (Recup[0] == null || Recup == "" || Recup == " ")
         {
             Console.WriteLine("je ne sais pas qu'esque ta écrit mais RATIO + CHEH\n");
             Console.WriteLine("bon allez ton Age ?:\n");

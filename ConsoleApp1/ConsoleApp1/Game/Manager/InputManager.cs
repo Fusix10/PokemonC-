@@ -2,7 +2,7 @@ using System.Collections;
 
 public class InputManager
 {
-    private static InputManager? instance;
+    public static InputManager? instance;
 
     private Hashtable keyBindings = new Hashtable();
     int i = 0;

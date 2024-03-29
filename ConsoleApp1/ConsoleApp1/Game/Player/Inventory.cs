@@ -8,18 +8,20 @@ using ConsoleApp1;
 internal class Inventory
 {
     List<List<Pokemon>> Pokedex;
+    List<Pokemon> InvActuel;
     public List<List<Pokemon>> Pokedex1 { get => Pokedex;}
+    public List<Pokemon> InvActuel1 { get => InvActuel; set => InvActuel = value; }
     public Inventory()
     {
         Pokedex = new List<List<Pokemon>>();
+        InvActuel = new List<Pokemon>();
     }
-
     public void AddPokemon(Pokemon Poke)
     {
         
         for (int j = 0; j < Pokedex.Count(); j++)
         {
-            if (Pokedex[j][0]._id == Poke._id)
+            if (Pokedex[j][0].Id == Poke.Id)
             {
                 Pokedex[j].Add(Poke);
             }
@@ -37,7 +39,7 @@ internal class Inventory
         {
             for(int j = 0; j < Pokedex.Count(); j++)
             {
-                if(Pokedex[j][0]._id == Poke[i]._id) 
+                if(Pokedex[j][0].Id == Poke[i].Id) 
                 {
                     Pokedex[j].Add(Poke[i]);
                 }
@@ -48,6 +50,17 @@ internal class Inventory
                     Pokedex[j].Add(PokePass[j]);
                 }
             }
+        }
+    }
+    public void AddPokemonInvActuel(Pokemon Poke)
+    {
+        InvActuel.Add(Poke);
+    }
+    public void AddPokemonInvActuel(List<Pokemon> Poke)
+    {
+        for(int i = 0;i < Poke.Count(); i++)
+        {
+            InvActuel.Add(Poke[i]);
         }
     }
 }

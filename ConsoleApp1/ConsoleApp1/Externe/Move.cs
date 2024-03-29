@@ -16,4 +16,4 @@ public interface IMove
     void MakeMove(int IsTheMove);
 
 }
-
+ 
