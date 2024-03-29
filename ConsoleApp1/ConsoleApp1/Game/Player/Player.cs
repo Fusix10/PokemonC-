@@ -20,6 +20,9 @@ public class Player: IMove
 
     public string Name1 { get => Name; set => Name = value; }
     public string Age1 { get => Age; set => Age = value; }
+    public int Y { get; internal set; }
+    public int X { get; internal set; }
+    internal Inventory Inventory { get => inventory; set => inventory = value; }
 
     void IMove.MakeMove(int IsTheMove)
     {
