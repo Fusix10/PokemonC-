@@ -7,6 +7,10 @@ public class Player: IMove
     Transphorme Position;
     Inventory inventory;
     List<MoveP> list;
+
+    public int X;
+    public int Y;
+
     public Player()
     {
         Position = new Transphorme();

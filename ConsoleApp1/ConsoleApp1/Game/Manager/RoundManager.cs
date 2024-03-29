@@ -13,6 +13,9 @@ public class RoundManager
     List<Pokemon> EquipeEnemy;
     public List<Pokemon> EquipeJoueur1 { get => EquipeJoueur;}
     public List<Pokemon> EquipeEnemy1 { get => EquipeEnemy;}
+
+    IA_Combat ai;
+
     public RoundManager()
     {
         EquipeJoueur = new List<Pokemon>();
@@ -23,6 +26,14 @@ public class RoundManager
             Engine.instance.Window1.Windowfigth1[Engine.instance.Player.Inventory.InvActuel1[i].P.X][Engine.instance.Player.Inventory.InvActuel1[i].P.Y].Pok = Engine.instance.Player.Inventory.InvActuel1[i];
         }
         AddPok(Engine.instance.Player.Inventory.InvActuel1,1);
+
+        ai = new(EquipeEnemy, EquipeJoueur);
+
+        for (int i = 0; i < EquipeEnemy.Count(); i++)
+        {
+            EquipeEnemy[i].DrawPokemon(Engine.instance.Window1);
+            Engine.instance.Window1.Windowfigth1[EquipeEnemy[i].P.X][EquipeEnemy[i].P.Y].Pok = EquipeEnemy[i];
+        }
     }
     public void AddPok(Pokemon ActuelPok, int Who)
     {
@@ -109,7 +120,7 @@ public class RoundManager
             else if (Engine.instance.InputManager.Ivalue == 5 && EquipeJoueur[i].P.View1 == true)
             {
 
-                if (VerifXYtoCursor(EquipeJoueur[i],0) == true)
+                if (VerifXYtoCursor(EquipeJoueur[i], 0) == true)
                 {
                     Engine.instance.Window1.Windowfigth1[EquipeJoueur[i].P.X][EquipeJoueur[i].P.Y].Pok = EquipeJoueur[i];
                     Engine.instance.Window1.DrawWindowFigth();
@@ -121,20 +132,27 @@ public class RoundManager
                 }
                 if (VerifXYtoCursor(EquipeJoueur[i], 1) == true)
                 {
+                    if (Engine.instance.Window1.Windowfigth1[Engine.instance.Window1.Elcursor1.X][Engine.instance.Window1.Elcursor1.Y].Pok == null || IsAlly(Engine.instance.Window1.Windowfigth1[Engine.instance.Window1.Elcursor1.X][Engine.instance.Window1.Elcursor1.Y].Pok)) break;
                     Engine.instance.Window1.Windowfigth1[Engine.instance.Window1.Elcursor1.X][Engine.instance.Window1.Elcursor1.Y].Pok.TakeDommage(EquipeJoueur[i].Dmg);
                     ViewMovePok2(EquipeJoueur[i].P.X, EquipeJoueur[i].P.Y, false);
                     Console.WriteLine("dans ta poire");
                     EquipeJoueur[i].ViewMoveResult1.Clear();
                     break;
-                }  
+                }
             }
             if (EquipeJoueur[i].P.View1 == true)
             {
                 ViewMovePok(Engine.instance.Window1.Elcursor1.X, Engine.instance.Window1.Elcursor1.Y);
             }
         }
-        
 
+        ai.Round();
+
+        for (int i = 0; i < EquipeEnemy.Count(); i++)
+        {
+            EquipeEnemy[i].DrawPokemon(Engine.instance.Window1);
+            Engine.instance.Window1.Windowfigth1[EquipeEnemy[i].P.X][EquipeEnemy[i].P.Y].Pok = EquipeEnemy[i];
+        }
     }
     private void DrawListPok()
     {
@@ -176,8 +194,8 @@ public class RoundManager
                 if (Engine.instance.Window1.Elcursor1.X == pok.ViewMoveResult1[i][0] && Engine.instance.Window1.Elcursor1.Y == pok.ViewMoveResult1[i][1])
                 {
                     Engine.instance.Window1.Windowfigth1[pok.P.X][pok.P.Y].Pok = null;
-                    pok.P.X = pok.ViewMoveResult1[i][0];
-                    pok.P.Y = pok.ViewMoveResult1[i][1];
+                    pok.P.X = (int)pok.ViewMoveResult1[i].X;
+                    pok.P.Y = (int)pok.ViewMoveResult1[i].Y;
                     return true;
                 }
             }
@@ -196,6 +214,18 @@ public class RoundManager
             return false;
         }
 
+    }
+
+    private bool IsAlly(Pokemon p)
+    {
+        bool result = false;
+
+        EquipeJoueur.ForEach(x =>
+        {
+            if(x.Id == p.Id) result = true;
+        });
+
+        return result;
     }
 
 }

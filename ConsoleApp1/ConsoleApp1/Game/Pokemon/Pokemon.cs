@@ -1,9 +1,10 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using static IMove;
 
 namespace ConsoleApp1
 {
-    public abstract class Pokemon : IMove
+    public class Pokemon : IMove
     {
         public class Pos
         {
@@ -14,8 +15,8 @@ namespace ConsoleApp1
             public int Y { get => y; set => y = value; }
             public bool View1 { get => View; set => View = value; }
         } 
-        protected List<List<int>> ViewMoveResult;
-        private List<List<int>> viewAttackResult;
+        protected List<Vector2> ViewMoveResult;
+        private List<Vector2> viewAttackResult;
         protected String Icone;
         private int id;
         protected int _pv;
@@ -28,8 +29,9 @@ namespace ConsoleApp1
         protected List<MoveP> ELMouvement1 { get => ELMouvement; set => ELMouvement = value; }
         public List<List<MoveP>> Mouvement { get => mouvement; set => mouvement = value; }
         public Pos P { get => p; set => p = value; }
-        public List<List<int>> ViewMoveResult1 { get => ViewMoveResult; set => ViewMoveResult = value; }
-        public List<List<int>> ViewAttackResult { get => viewAttackResult; set => viewAttackResult = value; }
+        public List<Vector2> ViewMoveResult1 { get => ViewMoveResult; set => ViewMoveResult = value; }
+        public List<Vector2> ViewAttackResult { get => viewAttackResult; set => viewAttackResult = value; }
+
         public List<List<MoveP>> RangeAttack { get => rangeAttack;}
         public int Id { get => id;}
         public int Dmg { get => _dmg; }
@@ -37,8 +39,8 @@ namespace ConsoleApp1
         public Pokemon(int Where, int x, int y)
         {
             
-            ViewMoveResult = new List<List<int>>();
-            ViewAttackResult = new List<List<int>>();
+            ViewMoveResult = new List<Vector2>();
+            ViewAttackResult = new List<Vector2>();
             p = new Pos();
             id = Where;
             _pv = 0;
@@ -78,60 +80,53 @@ namespace ConsoleApp1
 
             for (int i = 0; i < PreViewThis.Count; i++)
             {
-                int u = p.X;
-                int f = p.Y;
+                int x = p.X;
+                int y = p.Y;
                 for (int j = 0; j < PreViewThis[i].Count; j++)
                 {
                     if (PreViewThis[i][j] == MoveP.Up)
                     {
-                        u++;
+                        x++;
                     }
                     else if (PreViewThis[i][j] == MoveP.Down)
                     {
-                        --u;
+                        --x;
                     }
                     else if (PreViewThis[i][j] == MoveP.Left)
                     {
-                        --f;
+                        --y;
                     }
                     else if (PreViewThis[i][j] == MoveP.Right)
                     {
-                        f++;
+                        y++;
                     }
                 }
 
 
 
-                if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
+                if (x < window.Windowfigth1.Count() && x >= 0 && y < window.Windowfigth1[0].Count() && y >= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     if(Who == 0) 
                     {
-                        if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
+                        if (x < window.Windowfigth1.Count() && x >= 0 && y < window.Windowfigth1[0].Count() && y >= 0)
                         {
-                            Draw.DrawInCase(window.Windowfigth1[u][f], "MMM", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                            Draw.DrawInCase(window.Windowfigth1[x][y], "MMM", window.Windowfigth1[x][y].W / 2 - 1, window.Windowfigth1[x][y].H / 2);
                         }
                         
                     }
                     else
                     {
-                        if (u < window.Windowfigth1.Count() && u >= 0 && f < window.Windowfigth1[0].Count() && f >= 0)
+                        if (x < window.Windowfigth1.Count() && x >= 0 && y < window.Windowfigth1[0].Count() && y >= 0)
                         {
-                            Draw.DrawInCase(window.Windowfigth1[u][f], "XXX", window.Windowfigth1[u][f].W / 2 - 1, window.Windowfigth1[u][f].H / 2);
+                            Draw.DrawInCase(window.Windowfigth1[x][y], "XXX", window.Windowfigth1[x][y].W / 2 - 1, window.Windowfigth1[x][y].H / 2);
                         }
                     }
                     
                     Console.ForegroundColor = ConsoleColor.White;
-                    List<int> l = new List<int>();
-                    l.Add(u);l.Add(f);
-                    if (Who == 0)
-                    {
-                        ViewMoveResult.Add(l);
-                    }
-                    else
-                    {
-                        ViewAttackResult.Add(l);
-                    }
+
+                    if (Who == 0) ViewMoveResult.Add(new(x, y));
+                    else ViewAttackResult.Add(new(x, y));
 
                 }
             }
@@ -142,7 +137,10 @@ namespace ConsoleApp1
             Draw.DrawInCase(window.Windowfigth1[p.X][p.Y], Icone);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public abstract void Attacks();
+        public virtual void Attacks()
+        {
+
+        }
 
         public void TakeDommage(int Dommage)
         {

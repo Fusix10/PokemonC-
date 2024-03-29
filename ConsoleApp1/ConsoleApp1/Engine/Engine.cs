@@ -13,6 +13,11 @@ public class Engine
     Player player;
     bool PreMove = false;
     bool ingame = true;
+
+
+
+    bool fight = false;
+    Map exploMap;
     
     public Engine()
     {
@@ -28,6 +33,10 @@ public class Engine
         inputManager.Awake();
         Window.DrawWindowFigth();
         roundManager = new RoundManager();
+
+
+
+        exploMap = new();
     }
 
     public bool Ingame {set => ingame = value; }
@@ -41,11 +50,27 @@ public class Engine
         while (ingame)
         {
             inputManager.Update();
+
+            if(!fight)
+            {
+                exploMap.Update();
+                continue;
+            }
+
             roundManager.Update();
 
         }
     }
     
+
+    public void LaunchBattle()
+    {
+        fight = true;
+
+        roundManager.AddPok(new Pikachute(3, 5, 3), 2);
+
+    }
+
 
     void CreationPlayer() 
     {
